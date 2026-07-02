@@ -1,0 +1,124 @@
+</main><!-- /#main -->
+
+<footer class="site-footer">
+  <!-- Footer CTA band -->
+  <div class="footer-cta">
+    <div class="container container--wide footer-cta__inner">
+      <div class="footer-cta__copy">
+        <p class="footer-cta__eyebrow">Free, Confidential Consultation</p>
+        <h2 class="footer-cta__title">Injured? Let&rsquo;s talk about your case.</h2>
+        <p class="footer-cta__text">No upfront fees &mdash; you pay nothing unless we recover for you. Available 24/7 across California.</p>
+      </div>
+      <div class="footer-cta__actions">
+        <a class="btn btn--primary btn--lg" href="/case-evaluation.php" data-ripple>Free Case Evaluation</a>
+        <a class="btn btn--ghost-light btn--lg" href="tel:<?= e(cfg('site_phone_raw', SITE_PHONE_RAW)) ?>">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <?= e(cfg('site_phone', SITE_PHONE)) ?>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container--wide">
+    <div class="footer-grid">
+
+      <!-- Col 1: brand + social -->
+      <div class="footer-col footer-col--brand">
+        <!-- Footer is always dark, so always use the light-text (dark) logo — no theme swap. -->
+        <img class="footer-logo" src="/assets/images/logo-dark.svg" width="392" height="112"
+             alt="<?= e(cfg('firm_name', SITE_NAME)) ?>">
+        <p class="footer-tagline">Fighting for California&rsquo;s Injured.<br>No Fee Unless We Win.</p>
+        <ul class="footer-social" role="list" aria-label="Social media">
+          <li><a href="<?= e(cfg('social_facebook', '#')) ?>" aria-label="Facebook" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a></li>
+          <li><a href="<?= e(cfg('social_x', '#')) ?>" aria-label="X" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.3 8.3L23 22h-6.8l-5.3-6.9L4.8 22H2l7.8-8.9L1.5 2h6.9l4.8 6.3L18.9 2zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20z"/></svg></a></li>
+          <li><a href="<?= e(cfg('social_linkedin', '#')) ?>" aria-label="LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a></li>
+          <li><a href="<?= e(cfg('social_instagram', '#')) ?>" aria-label="Instagram" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 2: quick links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul role="list">
+          <li><a href="/about.php">About Us</a></li>
+          <li><a href="/results.php">Case Results</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/faq.php">FAQ</a></li>
+          <li><a href="/case-evaluation.php">Free Case Evaluation</a></li>
+          <li><a href="/contact.php">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: practice areas -->
+      <div class="footer-col">
+        <h3>Practice Areas</h3>
+        <ul role="list">
+          <li><a href="/practice-areas/car-accidents/">Car Accidents</a></li>
+          <li><a href="/practice-areas/truck-accidents/">Truck Accidents</a></li>
+          <li><a href="/practice-areas/motorcycle-accidents/">Motorcycle Accidents</a></li>
+          <li><a href="/practice-areas/slip-and-fall/">Slip &amp; Fall</a></li>
+          <li><a href="/practice-areas/wrongful-death/">Wrongful Death</a></li>
+          <li><a href="/practice-areas/">All Practice Areas</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: contact + map -->
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="footer-contact" role="list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:<?= e(cfg('site_phone_raw', SITE_PHONE_RAW)) ?>"><?= e(cfg('site_phone', SITE_PHONE)) ?></a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+            <a href="mailto:<?= e(cfg('site_email', SITE_EMAIL)) ?>"><?= e(cfg('site_email', SITE_EMAIL)) ?></a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><?= e(cfg('site_address', SITE_ADDRESS)) ?></span>
+          </li>
+        </ul>
+        <a class="footer-directions" href="https://www.google.com/maps/search/?api=1&amp;query=<?= rawurlencode(cfg('site_address', SITE_ADDRESS)) ?>" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          Get Directions
+        </a>
+        <p class="footer-hours">Mon&ndash;Fri 8am&ndash;6pm &middot; 24/7 phone intake</p>
+      </div>
+    </div>
+
+    <!-- CALIFORNIA BAR COMPLIANCE: required notices -->
+    <div class="footer-disclaimer">
+      <p class="advertising">&copy; <span data-year>2026</span> <?= e(cfg('firm_name', SITE_NAME)) ?>. All Rights Reserved. | Attorney Advertising.</p>
+      <p><?= e(cfg('footer_disclaimer', 'This website is for informational purposes only and does not constitute legal advice. Viewing this website does not create an attorney-client relationship. Past results do not guarantee future outcomes. ' . SITE_NAME . ' is licensed to practice law in California only.')) ?></p>
+    </div>
+
+    <div class="footer-bottom">
+      <span>Serving all 58 California counties.</span>
+      <span class="footer-bottom__links">
+        <a href="/privacy-policy.php">Privacy Policy</a> &middot;
+        <a href="/terms.php">Terms</a> &middot;
+        <a href="/sitemap.xml">Sitemap</a> &middot;
+        <a href="/disclaimer.php">Disclaimer</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile sticky CTA bar (phone + free case review) — shown on small screens -->
+<?php require __DIR__ . '/mobile-cta-bar.php'; ?>
+
+<!-- Site JS — animations.js lazy-loads GSAP + ScrollTrigger from CDN itself,
+     with an IntersectionObserver fallback if the CDN is unreachable. -->
+<?php require __DIR__ . '/booking-widget.php'; ?>
+
+<!-- CCPA cookie consent banner (only renders when trackers are configured + undecided) -->
+<?php analytics_banner(); ?>
+
+<?php asset_scripts(array_merge(['/assets/js/theme.js', '/assets/js/main.js', '/assets/js/animations.js', '/assets/js/forms.js', '/assets/js/booking.js', '/assets/js/phase10.js'], $page['scripts'] ?? [])); ?>
+</body>
+</html>

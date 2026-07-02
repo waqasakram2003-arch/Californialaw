@@ -1,0 +1,22 @@
+<!--
+  Golden State Injury Lawyers — favicon / PWA <head> snippet (REFERENCE).
+  These tags are already wired into includes/header.php. Kept here as a
+  standalone reference for any page rendered outside the shared header.
+  Paths are site-absolute, so they work from any URL depth.
+-->
+
+<!-- Classic ICO (multi-size 16/32/48) for legacy browsers -->
+<link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+
+<!-- Modern scalable SVG favicon (preferred where supported) -->
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+
+<!-- iOS home-screen icon (180x180 PNG, non-transparent) -->
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<!-- PWA manifest (name, theme colors, 192/512 + maskable icons) -->
+<link rel="manifest" href="/assets/images/manifest.json">
+
+<!-- Browser UI theme color, theme-aware -->
+<meta name="theme-color" content="#1B2A4A" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0F1E" media="(prefers-color-scheme: dark)">

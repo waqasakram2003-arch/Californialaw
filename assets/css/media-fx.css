@@ -1,0 +1,108 @@
+/* ===========================================================================
+   media-fx.css — image backgrounds, reveals, hovers & transitions
+   Loaded site-wide (after main/home). Honors prefers-reduced-motion.
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. PRACTICE-AREA DETAIL HERO — the area's photo as a darkened backdrop
+   --------------------------------------------------------------------------- */
+.pa-hero__photo {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+  transform: scale(1.03);
+  animation: pa-hero-zoom 24s ease-in-out infinite alternate;
+}
+/* Angled navy veil: darkest on the left (under the text), photo peeks on the right. */
+.pa-hero__photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(108deg,
+    rgba(13, 27, 42, 0.95) 0%,
+    rgba(13, 27, 42, 0.86) 42%,
+    rgba(27, 42, 74, 0.58) 100%);
+}
+@keyframes pa-hero-zoom { from { transform: scale(1.03); } to { transform: scale(1.13); } }
+/* When a background photo is present, drop the faint icon glyph — the photo
+   already carries the visual, and the overlaid icon reads as clutter. */
+.pa-hero__photo ~ .pa-hero__glyph { display: none; }
+
+/* ---------------------------------------------------------------------------
+   2. GENERIC PAGE HEROES (.pa-hero--index) — shared, subtle office backdrop
+      Covers practice-areas index, contact, results, faq, legal pages, etc.
+   --------------------------------------------------------------------------- */
+.pa-hero.pa-hero--index {
+  background-image:
+    linear-gradient(108deg, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.80) 45%, rgba(27,42,74,0.55) 100%),
+    image-set(url('/assets/images/generated/hero-office.webp') type('image/webp'),
+              url('/assets/images/generated/hero-office.jpg') type('image/jpeg'));
+  background-image:
+    linear-gradient(108deg, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.80) 45%, rgba(27,42,74,0.55) 100%),
+    -webkit-image-set(url('/assets/images/generated/hero-office.webp') type('image/webp'),
+              url('/assets/images/generated/hero-office.jpg') type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;   /* gentle parallax on desktop */
+}
+
+/* ---------------------------------------------------------------------------
+   3. CARD IMAGE HOVERS — blog / practice-area / attorney
+   --------------------------------------------------------------------------- */
+.blog-card__media,
+.pa-card__media { position: relative; overflow: hidden; }
+
+.blog-card__media img,
+.pa-card__media img {
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1), filter .4s ease;
+  will-change: transform;
+}
+.blog-card:hover .blog-card__media img { transform: scale(1.08); }
+.pa-card:hover   .pa-card__media img   { transform: scale(1.08); filter: saturate(1.08); }
+
+/* Diagonal gold sheen that sweeps across the image on hover. */
+.blog-card__media::before,
+.pa-card__media::before {
+  content: ''; position: absolute; top: 0; left: -75%; z-index: 3;
+  width: 55%; height: 100%; transform: skewX(-20deg); pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(232, 201, 126, 0.28), transparent);
+  transition: left .75s ease;
+}
+.blog-card:hover .blog-card__media::before,
+.pa-card:hover   .pa-card__media::before { left: 130%; }
+
+/* Attorney circular photo: gold ring glow + subtle inner zoom on hover. */
+.attorney-card__photo { transition: transform var(--transition-base), box-shadow .45s ease; }
+.attorney-card__photo img { transition: transform .6s cubic-bezier(.22, 1, .36, 1), filter .4s ease; }
+.attorney-card:hover .attorney-card__photo {
+  box-shadow: 0 0 0 5px rgba(232, 201, 126, 0.30), 0 16px 34px rgba(0, 0, 0, 0.20);
+}
+.attorney-card:hover .attorney-card__photo img { transform: scale(1.05); filter: brightness(1.05); }
+
+/* ---------------------------------------------------------------------------
+   4. SCROLL REVEAL FOR IMAGES — clip-path wipe + zoom-settle
+      Add class="media-reveal" to an image wrapper; it animates when the
+      existing IntersectionObserver adds .animated (or .in-view).
+   --------------------------------------------------------------------------- */
+.media-reveal { clip-path: inset(0 0 0 0); }
+.media-reveal img {
+  transform: scale(1.12);
+  transition: transform 1s cubic-bezier(.22, 1, .36, 1);
+}
+.media-reveal.animated img,
+.media-reveal.in-view img,
+.animated .media-reveal img { transform: scale(1); }
+
+/* Soft fade-up that the card grids can opt into for their media. */
+@keyframes media-fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ---------------------------------------------------------------------------
+   5. Motion preferences + mobile trims
+   --------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .pa-hero--index { background-attachment: scroll; }  /* fixed bg janks on mobile */
+}
+@media (prefers-reduced-motion: reduce) {
+  .pa-hero__photo { animation: none; transform: none; }
+  .blog-card__media img, .pa-card__media img,
+  .attorney-card__photo img, .media-reveal img { transition: none; transform: none; }
+  .blog-card__media::before, .pa-card__media::before { display: none; }
+  .pa-hero--index { background-attachment: scroll; }
+}

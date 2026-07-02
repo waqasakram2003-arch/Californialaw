@@ -1,0 +1,3 @@
+# Deny all direct web access to PHP includes (config, db, functions, header, footer).
+# These are only ever included by front controllers, never requested directly.
+Require all denied

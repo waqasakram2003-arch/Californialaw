@@ -1,0 +1,14 @@
+# Clean attorney profile URLs on Apache / Hostinger:
+#   /attorney/elena-marquez/  ->  profile.php?slug=elena-marquez
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /attorney/
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ profile.php?slug=$1 [L,QSA]
+</IfModule>
+
+Options -Indexes

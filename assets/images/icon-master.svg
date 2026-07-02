@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"
+     role="img" aria-label="Golden State Injury Lawyers">
+  <title>Golden State Injury Lawyers</title>
+  <!-- Full-bleed navy (safe for apple-touch + maskable: mark sits in center 70%) -->
+  <rect width="512" height="512" fill="#1B2A4A"/>
+  <g transform="translate(256 256) scale(4.7) translate(-32 -33)">
+    <!-- Gold shield -->
+    <path d="M32 12 L50 18 L50 33 C50 44 42 51 32 55 C22 51 14 44 14 33 L14 18 Z"
+          fill="none" stroke="#C8A96E" stroke-width="2.2" stroke-linejoin="round"/>
+    <g stroke="#C8A96E" stroke-linecap="round">
+      <circle cx="32" cy="22" r="2" fill="#C8A96E" stroke="none"/>
+      <line x1="32" y1="23" x2="32" y2="44" stroke-width="2"/>
+      <line x1="26" y1="44" x2="38" y2="44" stroke-width="2"/>
+      <line x1="22" y1="27" x2="42" y2="27" stroke-width="2"/>
+      <path d="M18 27 L15 34 a3.4 3.4 0 0 0 6 0 Z" fill="rgba(200,169,110,0.22)" stroke-width="1.4"/>
+      <path d="M46 27 L43 34 a3.4 3.4 0 0 0 6 0 Z" fill="rgba(200,169,110,0.22)" stroke-width="1.4"/>
+    </g>
+  </g>
+</svg>

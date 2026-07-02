@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     role="img" aria-label="Golden State Injury Lawyers — California Personal Injury Attorneys">
+  <title>Golden State Injury Lawyers</title>
+  <defs>
+    <linearGradient id="ogBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#0B1422"/>
+      <stop offset="0.55" stop-color="#13233F"/>
+      <stop offset="1"   stop-color="#24365A"/>
+    </linearGradient>
+    <radialGradient id="ogGlow" cx="0.24" cy="0.45" r="0.5">
+      <stop offset="0" stop-color="#C8A96E" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#C8A96E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ogGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8C97E"/>
+      <stop offset="1" stop-color="#C8A96E"/>
+    </linearGradient>
+    <style>
+      .og-name { font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif; font-weight: 700; }
+      .og-eyebrow, .og-tag { font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <rect width="1200" height="630" fill="url(#ogGlow)"/>
+
+  <!-- Subtle gold particle dots -->
+  <g fill="#C8A96E">
+    <circle cx="120" cy="90"  r="3"   opacity="0.30"/>
+    <circle cx="220" cy="540" r="4"   opacity="0.22"/>
+    <circle cx="70"  cy="330" r="2.5" opacity="0.35"/>
+    <circle cx="500" cy="80"  r="3.5" opacity="0.16"/>
+    <circle cx="560" cy="560" r="2.5" opacity="0.24"/>
+    <circle cx="980" cy="110" r="4"   opacity="0.16"/>
+    <circle cx="1120" cy="300" r="3"  opacity="0.22"/>
+    <circle cx="1060" cy="540" r="2.5" opacity="0.28"/>
+    <circle cx="900" cy="500" r="2"   opacity="0.20"/>
+    <circle cx="160" cy="450" r="2.5" opacity="0.20"/>
+    <circle cx="1140" cy="80" r="2.5" opacity="0.18"/>
+  </g>
+
+  <!-- Inset gold frame -->
+  <rect x="28" y="28" width="1144" height="574" rx="18" fill="none"
+        stroke="#C8A96E" stroke-width="1.5" opacity="0.32"/>
+
+  <!-- ============ Left: scales icon ============ -->
+  <g transform="translate(278 296) scale(5.0) translate(-56 -56)">
+    <path d="M22 26 L90 26 L90 58 C90 84 74 99 56 106 C38 99 22 84 22 58 Z"
+          fill="rgba(232,201,126,0.05)" stroke="url(#ogGold)" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M31 32 L81 32" stroke="url(#ogGold)" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>
+    <circle cx="56" cy="40" r="3.1" fill="url(#ogGold)"/>
+    <line x1="56" y1="42" x2="56" y2="84" stroke="url(#ogGold)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M48 85 L64 85" stroke="url(#ogGold)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M44 90 L68 90" stroke="url(#ogGold)" stroke-width="2.8" stroke-linecap="round"/>
+    <g>
+      <line x1="36" y1="46" x2="76" y2="46" stroke="url(#ogGold)" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M36 46 L29 60 M36 46 L43 60" stroke="url(#ogGold)" stroke-width="1.2"/>
+      <path d="M28 60 Q36 70 44 60" fill="none" stroke="url(#ogGold)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M76 46 L69 60 M76 46 L83 60" stroke="url(#ogGold)" stroke-width="1.2"/>
+      <path d="M68 60 Q76 70 84 60" fill="none" stroke="url(#ogGold)" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Vertical divider -->
+  <line x1="512" y1="180" x2="512" y2="450" stroke="#C8A96E" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- ============ Right: wordmark ============ -->
+  <text class="og-eyebrow" x="556" y="214" font-size="16" letter-spacing="3.4" font-weight="600" fill="#C8A96E">CALIFORNIA PERSONAL INJURY ATTORNEYS</text>
+
+  <text class="og-name" x="554" y="306" font-size="70" fill="#F4F7FC">Golden State</text>
+  <text class="og-name" x="554" y="384" font-size="70" fill="#F4F7FC">Injury Lawyers</text>
+
+  <path d="M556 416 L700 416" stroke="url(#ogGold)" stroke-width="3" stroke-linecap="round"/>
+
+  <text class="og-tag" x="556" y="456" font-size="21" font-weight="500" fill="#C8D0E0">Fighting for California&#8217;s Injured. No Fee Unless We Win.</text>
+</svg>

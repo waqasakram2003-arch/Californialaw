@@ -1,0 +1,128 @@
+/* ===========================================================================
+   attorney.css — Attorney profile + listing pages.
+   Loaded with home.css (+ practice-area.css for accordion/breadcrumbs/filter).
+   =========================================================================== */
+
+/* ===========================================================================
+   PROFILE HERO
+   =========================================================================== */
+.attorney-hero {
+  background: var(--gradient-primary); color: rgba(255,255,255,0.85);
+  padding-block: calc(var(--header-h) + var(--space-8)) var(--space-10);
+}
+.attorney-hero__head { display: flex; align-items: center; gap: var(--space-8); flex-wrap: wrap; }
+.attorney-hero__photo {
+  flex: none; width: 160px; height: 160px; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center; border: 4px solid var(--color-accent);
+  background: linear-gradient(150deg, #16263d, #2A3F6F); box-shadow: var(--shadow-lg);
+}
+.attorney-hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+.attorney-hero__initials { font-family: var(--font-heading); font-weight: 700; font-size: 3.2rem; color: var(--color-secondary); }
+.attorney-hero__meta h1 { color: #fff; font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 0.98; margin-bottom: 4px; letter-spacing: 0.01em; }
+.attorney-hero__title { font-size: var(--text-lg); color: var(--color-secondary); font-weight: var(--weight-semibold); margin-bottom: var(--space-5); }
+.attorney-hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* ===========================================================================
+   INFO BAR
+   =========================================================================== */
+.info-bar { background: var(--color-bg-card); border-bottom: 1px solid var(--color-border); }
+.info-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
+@media (max-width: 760px) { .info-bar__grid { grid-template-columns: 1fr 1fr; } }
+.info-bar__item { padding: var(--space-6) var(--space-4); text-align: center; border-right: 1px solid var(--color-border); }
+.info-bar__item:last-child { border-right: none; }
+@media (max-width: 760px) { .info-bar__item:nth-child(2) { border-right: none; } }
+.info-bar__item dt { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+.info-bar__item dd { margin: 0; font-weight: var(--weight-semibold); color: var(--color-heading); }
+html[data-theme="dark"] .info-bar__item dd { color: var(--color-text); }
+
+/* ===========================================================================
+   BIOGRAPHY (2 columns desktop)
+   =========================================================================== */
+.attorney-bio { color: var(--color-text-muted); line-height: 1.8; }
+.attorney-bio p { margin-bottom: var(--space-4); }
+@media (min-width: 800px) {
+  .attorney-bio { column-count: 2; column-gap: var(--space-8); }
+  .attorney-bio p:first-child { margin-top: 0; }
+}
+
+/* ===========================================================================
+   CREDENTIALS TIMELINE
+   =========================================================================== */
+.cred-timeline { list-style: none; padding: 0; margin: 0; max-width: 640px; margin-inline: auto; }
+.cred-timeline__item { display: flex; gap: var(--space-5); padding: var(--space-4) 0; border-left: 2px solid var(--color-border); padding-left: var(--space-6); position: relative; }
+.cred-timeline__item::before { content: ''; position: absolute; left: -7px; top: var(--space-5); width: 12px; height: 12px; border-radius: 50%; background: var(--gradient-gold); }
+.cred-timeline__year { flex: none; font-family: var(--font-heading); font-weight: 800; color: var(--color-accent); width: 56px; }
+.cred-timeline__school { font-size: var(--text-md); margin-bottom: 2px; }
+.cred-timeline__detail { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* ===========================================================================
+   REPRESENTATIVE MATTERS
+   =========================================================================== */
+.matter-card__type { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-lg); color: var(--color-accent); margin-bottom: var(--space-2); }
+.matter-card__desc { font-size: var(--text-sm); }
+
+/* ===========================================================================
+   TESTIMONIALS
+   =========================================================================== */
+.att-testimonial { padding: var(--space-6); }
+.att-testimonial__stars { display: flex; gap: 3px; margin-bottom: var(--space-3); }
+.att-testimonial__stars svg { width: 18px; height: 18px; color: rgba(255,255,255,0.25); }
+.att-testimonial__stars svg.is-on { color: var(--color-secondary); }
+.att-testimonial blockquote { font-family: var(--font-body); font-weight: 500; font-style: normal; font-size: var(--text-lg); line-height: 1.5; color: #fff; margin: 0 0 var(--space-4); }
+.att-testimonial blockquote::before { content: '\201C'; color: var(--color-secondary); font-family: var(--font-display); font-size: 1.4em; line-height: 0; margin-right: .08em; vertical-align: -0.25em; }
+.att-testimonial figcaption { display: flex; flex-direction: column; }
+.att-testimonial__name { font-weight: var(--weight-semibold); color: #fff; }
+.att-testimonial__case { font-size: var(--text-sm); color: var(--color-secondary); }
+
+/* ===========================================================================
+   CONTACT FORM
+   =========================================================================== */
+.att-form { position: relative; max-width: 640px; margin-inline: auto; padding: var(--space-7); }
+.att-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+@media (max-width: 560px) { .att-form__row { grid-template-columns: 1fr; } }
+.att-form textarea { padding: 0.85rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text); font: inherit; resize: vertical; }
+.att-form textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb),0.2); }
+.att-form .form-success { background: var(--color-bg-card); }
+.att-form .fs-circle, .att-form .fs-check { stroke: var(--color-accent); }
+.att-form .form-success__msg { color: var(--color-heading); }
+html[data-theme="dark"] .att-form .form-success__msg { color: var(--color-text); }
+
+/* ===========================================================================
+   OTHER TEAM (horizontal scroll)
+   =========================================================================== */
+.team-scroll { display: flex; gap: var(--space-5); overflow-x: auto; padding-bottom: var(--space-4); scroll-snap-type: x mandatory; }
+.team-scroll__card {
+  flex: 0 0 220px; scroll-snap-align: start; text-align: center;
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+.team-scroll__card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: rgba(var(--color-accent-rgb),0.5); }
+.team-scroll__photo { width: 90px; height: 90px; margin: 0 auto var(--space-3); border-radius: 50%; display: grid; place-items: center; overflow: hidden; background: linear-gradient(150deg, var(--color-primary), var(--color-primary-light)); border: 3px solid var(--color-accent); }
+.team-scroll__photo img { width: 100%; height: 100%; object-fit: cover; }
+.team-scroll__initials { font-family: var(--font-heading); font-weight: 700; font-size: 1.6rem; color: var(--color-secondary); }
+.team-scroll__name { display: block; font-family: var(--font-heading); font-weight: 700; font-size: var(--text-md); }
+.team-scroll__title { display: block; font-size: var(--text-sm); color: var(--color-accent); margin: 2px 0; }
+.team-scroll__bar { display: block; font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* ===========================================================================
+   LISTING PAGE
+   =========================================================================== */
+.attorney-grid-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+@media (max-width: 900px) { .attorney-grid-list { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .attorney-grid-list { grid-template-columns: 1fr; } }
+.att-list-card {
+  text-align: center; background: var(--color-bg-card); border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--space-7) var(--space-6); box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+.att-list-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--color-accent); }
+.att-list-card__photo { width: 120px; height: 120px; margin: 0 auto var(--space-4); border-radius: 50%; display: grid; place-items: center; overflow: hidden; background: linear-gradient(150deg, var(--color-primary), var(--color-primary-light)); border: 3px solid var(--color-accent); }
+.att-list-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+.att-list-card__initials { font-family: var(--font-heading); font-weight: 700; font-size: 2.2rem; color: var(--color-secondary); }
+.att-list-card__name { font-size: var(--text-xl); margin-bottom: 2px; }
+.att-list-card__title { font-size: var(--text-sm); color: var(--color-accent); font-weight: var(--weight-semibold); margin-bottom: var(--space-3); }
+.att-list-card__bio { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-5); }
+.att-list-card__bar { display: block; font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-4); }
+.att-list-card.is-hidden { display: none; }
+.att-list-card.is-filtering { animation: pa-fade-in var(--transition-base) both; }

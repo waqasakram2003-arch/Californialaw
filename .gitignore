@@ -1,0 +1,20 @@
+# --- Server-only secrets (repo is PUBLIC — never commit the DB password) ---
+includes/config.secret.php
+
+# --- One-time deployment artifacts (not part of the app) ---
+_deploy_import.php
+_deploy_import.sql
+
+# --- Runtime-generated / user uploads ---
+assets/uploads/
+assets/dist/
+*.log
+
+# --- OS / editor junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# Large generated imagery — lives on the server (uploaded once), not in git
+assets/images/generated/

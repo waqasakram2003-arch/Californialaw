@@ -1,0 +1,20 @@
+# Clean blog URLs on Apache / Hostinger:
+#   /blog/category/legal-tips/  -> category.php?slug=legal-tips
+#   /blog/some-post-slug/       -> post.php?slug=some-post-slug
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /blog/
+
+  # Don't rewrite real files or directories.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Category (two-segment) first.
+  RewriteRule ^category/([a-z0-9][a-z0-9-]*)/?$ category.php?slug=$1 [L,QSA]
+
+  # Single post (one segment).
+  RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ post.php?slug=$1 [L,QSA]
+</IfModule>
+
+Options -Indexes

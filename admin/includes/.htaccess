@@ -1,0 +1,2 @@
+# Admin includes are only ever required by admin pages, never requested directly.
+Require all denied

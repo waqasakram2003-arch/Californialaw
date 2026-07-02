@@ -1,0 +1,191 @@
+/* ===========================================================================
+   animations.css — Golden State Injury Lawyers
+   Keyframes, scroll-reveal utilities, micro-interactions, reduced-motion.
+   Consumes design-system.css tokens. Load AFTER main.css.
+   =========================================================================== */
+
+/* ===========================================================================
+   1–10. KEYFRAMES
+   =========================================================================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Skeleton shimmer — pair with background-size: 400% 100%. */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Animated gradient — pair with background-size: 200% 200%. */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(var(--color-accent-rgb), 0.0),
+                         var(--shadow-glow); }
+  50%      { box-shadow: 0 0 36px rgba(var(--color-accent-rgb), 0.45); }
+}
+
+/* Count-up: opacity ramp used alongside JS-driven number changes. */
+@keyframes counterUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================================================================
+   SCROLL-REVEAL UTILITIES
+   Elements tagged .animate-on-scroll start hidden; JS/IO adds .animated.
+   data-anim picks the keyframe (defaults to fadeInUp).
+   =========================================================================== */
+/* Reveal uses TRANSITIONS (not @keyframes) so the revealed end-state applies
+   immediately on the next paint even if frame updates are throttled — content
+   is never trapped on a hidden keyframe. */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  will-change: opacity, transform;
+}
+.animate-on-scroll.animated { opacity: 1; transform: none; }
+
+.animate-on-scroll[data-anim="left"]  { transform: translateX(-30px); }
+.animate-on-scroll[data-anim="right"] { transform: translateX(30px); }
+.animate-on-scroll[data-anim="scale"] { transform: scale(0.9); }
+.animate-on-scroll[data-anim="left"].animated,
+.animate-on-scroll[data-anim="right"].animated,
+.animate-on-scroll[data-anim="scale"].animated { transform: none; }
+
+/* R7.1 — on small screens the horizontal entrance transforms push elements past
+   the viewport edges and cause horizontal scroll. Reveal with vertical motion only. */
+@media (max-width: 768px) {
+  .animate-on-scroll[data-anim="left"],
+  .animate-on-scroll[data-anim="right"] { transform: translateY(24px); }
+}
+
+/* ---- Transition-delay utilities ---- */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+
+/* ---- Stagger direct children on reveal ---- */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+.stagger-children.animated > * { opacity: 1; transform: none; }
+.stagger-children.animated > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children.animated > *:nth-child(2) { transition-delay: 0.13s; }
+.stagger-children.animated > *:nth-child(3) { transition-delay: 0.21s; }
+.stagger-children.animated > *:nth-child(4) { transition-delay: 0.29s; }
+.stagger-children.animated > *:nth-child(5) { transition-delay: 0.37s; }
+.stagger-children.animated > *:nth-child(6) { transition-delay: 0.45s; }
+.stagger-children.animated > *:nth-child(7) { transition-delay: 0.53s; }
+.stagger-children.animated > *:nth-child(8) { transition-delay: 0.61s; }
+
+/* ===========================================================================
+   DECORATIVE / MICRO-INTERACTION HELPERS
+   =========================================================================== */
+.float          { animation: float 6s ease-in-out infinite; }
+.pulse-cta      { animation: pulse 2.4s ease-in-out infinite; }
+.glow-pulse     { animation: glowPulse 3s ease-in-out infinite; }
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Skeleton screen blocks */
+.skeleton {
+  background-color: var(--color-bg-section);
+  background-image: var(--gradient-shimmer);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  color: transparent !important;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Material-style ripple (injected by animations.js addRipple) */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255, 255, 255, 0.5);
+  animation: ripple-expand 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes ripple-expand {
+  to { transform: scale(2.5); opacity: 0; }
+}
+.has-ripple { position: relative; overflow: hidden; }
+
+/* Page transition veil (initPageTransition) */
+.page-transition-veil {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: var(--z-modal);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+.page-transition-veil.is-active { opacity: 1; pointer-events: all; }
+
+/* ===========================================================================
+   REDUCED MOTION — accessibility
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-on-scroll,
+  .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .float, .pulse-cta, .glow-pulse, .animated-gradient, .skeleton { animation: none !important; }
+}
+
+/* No-JS fallback: reveal everything if html.js never set. */
+html:not(.js) .animate-on-scroll,
+html:not(.js) .stagger-children > * {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}

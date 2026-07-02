@@ -1,0 +1,17 @@
+# Clean practice-area URLs on Apache / Hostinger:
+#   /practice-areas/car-accidents/  ->  area.php?slug=car-accidents
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /practice-areas/
+
+  # Don't rewrite real files or directories (index.php, area.php, assets).
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Map /<slug> and /<slug>/ to the dynamic template.
+  RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ area.php?slug=$1 [L,QSA]
+</IfModule>
+
+# Never list the directory.
+Options -Indexes

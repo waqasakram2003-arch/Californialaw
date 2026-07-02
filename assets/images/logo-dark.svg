@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 392 112" width="392" height="112"
+     role="img" aria-label="Golden State Injury Lawyers — Fighting for California's Injured. No Fee Unless We Win.">
+  <title>Golden State Injury Lawyers</title>
+  <style>
+    .gsil-beam {
+      transform-box: view-box;
+      transform-origin: 56px 46px;
+      animation: gsil-balance 4.5s ease-in-out infinite;
+    }
+    @keyframes gsil-balance {
+      0%, 100% { transform: rotate(-2.6deg); }
+      50%      { transform: rotate(2.6deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gsil-beam { animation: none; transform: none; }
+    }
+    .gsil-name { font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif; font-weight: 700; }
+    .gsil-tag  { font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif; font-weight: 500; }
+  </style>
+
+  <!-- ================= ICON: shield + scales ================= -->
+  <g>
+    <path d="M22 26 L90 26 L90 58 C90 84 74 99 56 106 C38 99 22 84 22 58 Z"
+          fill="rgba(232,201,126,0.06)" stroke="#E8C97E" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M31 32 L81 32" stroke="#E8C97E" stroke-width="1.6" stroke-linecap="round" opacity="0.95"/>
+
+    <circle cx="56" cy="40" r="3.1" fill="#E8C97E"/>
+    <line x1="56" y1="42" x2="56" y2="84" stroke="#E8C97E" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M48 85 L64 85" stroke="#E8C97E" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M44 90 L68 90" stroke="#E8C97E" stroke-width="3" stroke-linecap="round"/>
+
+    <g class="gsil-beam">
+      <line x1="36" y1="46" x2="76" y2="46" stroke="#E8C97E" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="36" cy="46" r="2" fill="#E8C97E"/>
+      <circle cx="76" cy="46" r="2" fill="#E8C97E"/>
+      <circle cx="56" cy="46" r="2.2" fill="#E8C97E"/>
+      <path d="M36 46 L29 60 M36 46 L43 60" stroke="#E8C97E" stroke-width="1.4"/>
+      <path d="M28 60 Q36 70 44 60" fill="none" stroke="#E8C97E" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M76 46 L69 60 M76 46 L83 60" stroke="#E8C97E" stroke-width="1.4"/>
+      <path d="M68 60 Q76 70 84 60" fill="none" stroke="#E8C97E" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- ================= WORDMARK ================= -->
+  <text class="gsil-name" x="112" y="48" font-size="27" letter-spacing="0.3" fill="#E2E8F0">Golden State</text>
+  <text class="gsil-name" x="112" y="79" font-size="27" letter-spacing="0.3" fill="#E2E8F0">Injury Lawyers</text>
+  <path d="M113 88 L201 88" stroke="#E8C97E" stroke-width="2.4" stroke-linecap="round"/>
+  <text class="gsil-tag" x="113" y="103" font-size="9.6" letter-spacing="0.2" fill="#E2E8F0" opacity="0.78">Fighting for California&#8217;s Injured  &#183;  No Fee Unless We Win.</text>
+</svg>
