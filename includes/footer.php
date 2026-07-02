@@ -120,5 +120,6 @@
 <?php analytics_banner(); ?>
 
 <?php asset_scripts(array_merge(['/assets/js/theme.js', '/assets/js/main.js', '/assets/js/animations.js', '/assets/js/forms.js', '/assets/js/booking.js', '/assets/js/phase10.js'], $page['scripts'] ?? [])); ?>
+<!-- gsil-build: 2026-07-02 · auto-deploy via GitHub -->
 </body>
 </html>
