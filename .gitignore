@@ -17,4 +17,4 @@ desktop.ini
 *.swp
 
 # Large generated imagery — lives on the server (uploaded once), not in git
-assets/images/generated/
+assets/images/generated/*.png
