@@ -23,12 +23,21 @@ $__gsil_prod = (stripos($__gsil_host, 'hostingersite.com') !== false)
 define('APP_ENV', $__gsil_prod ? 'production' : 'development'); // 'development' | 'production'
 
 // ---------------------------------------------------------------------------
-// Secrets — loaded from config.secret.php which is GITIGNORED and lives ONLY on
-// the server. The public GitHub repo must never contain the DB password.
-// config.secret.php defines GSIL_DB_PASS (see includes/config.secret.sample.php).
+// Secrets — config.secret.php defines GSIL_DB_PASS and is NEVER committed
+// (repo is public). Prefer a copy ABOVE the web root: Hostinger's Git deploy
+// does a clean checkout of public_html and wipes anything untracked, so a
+// secret inside public_html would be deleted every deploy. A file one level
+// above public_html survives. Fall back to includes/ for local dev.
 // ---------------------------------------------------------------------------
-$__gsil_secret = __DIR__ . '/config.secret.php';
-if (is_file($__gsil_secret)) { require $__gsil_secret; }
+// Walk up from includes/ looking for config.secret.php — finds it whether it
+// lives in includes/ (local dev) or in any ancestor above public_html (server).
+$__gsil_dir = __DIR__;
+for ($__i = 0; $__i < 6; $__i++) {
+    if (is_file($__gsil_dir . '/config.secret.php')) { require $__gsil_dir . '/config.secret.php'; break; }
+    $__gsil_parent = dirname($__gsil_dir);
+    if ($__gsil_parent === $__gsil_dir) break; // filesystem root reached
+    $__gsil_dir = $__gsil_parent;
+}
 
 // ---------------------------------------------------------------------------
 // Database (MySQL 8+). Name/user are non-sensitive; password comes from the
