@@ -76,7 +76,7 @@ function getRelatedBlogPosts(?int $categoryId, int $excludeId, int $limit = 3): 
     try {
         if ($categoryId) {
             $stmt = db()->prepare(
-                "SELECT p.title, p.slug, p.excerpt, p.published_at, p.author_name, c.name AS cat_name, c.slug AS cat_slug
+                "SELECT p.title, p.slug, p.excerpt, p.featured_image, p.published_at, p.author_name, c.name AS cat_name, c.slug AS cat_slug
                  FROM blog_posts p LEFT JOIN blog_categories c ON c.id = p.category_id
                  WHERE p.status='published' AND p.published_at <= NOW() AND p.category_id = :cat AND p.id <> :ex
                  ORDER BY p.published_at DESC LIMIT " . (int) $limit
@@ -87,7 +87,7 @@ function getRelatedBlogPosts(?int $categoryId, int $excludeId, int $limit = 3): 
         }
         // Fallback: most recent others.
         $stmt = db()->prepare(
-            "SELECT p.title, p.slug, p.excerpt, p.published_at, p.author_name, c.name AS cat_name, c.slug AS cat_slug
+            "SELECT p.title, p.slug, p.excerpt, p.featured_image, p.published_at, p.author_name, c.name AS cat_name, c.slug AS cat_slug
              FROM blog_posts p LEFT JOIN blog_categories c ON c.id = p.category_id
              WHERE p.status='published' AND p.published_at <= NOW() AND p.id <> :ex ORDER BY p.published_at DESC LIMIT " . (int) $limit
         );
