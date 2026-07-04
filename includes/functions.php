@@ -319,5 +319,8 @@ function pa_card_image(array $area): string
     if ($img === '') return '';
     $card = preg_replace('/(\.[a-z0-9]+)$/i', '-card$1', $img);
     $root = $_SERVER['DOCUMENT_ROOT'] ?: dirname(__DIR__);
-    return ($card && is_file($root . $card)) ? $card : $img;
+    $path = ($card && is_file($root . $card)) ? $card : $img;
+    // Cache-bust with ?v=filemtime so a swapped image (same filename) actually
+    // shows without a hard refresh — same reason the blog images needed it.
+    return function_exists('asset_url') ? asset_url($path) : $path;
 }
