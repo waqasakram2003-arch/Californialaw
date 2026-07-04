@@ -80,16 +80,26 @@
 
       // Gentle continuous auto-scroll (ping-pong). Pauses on hover / focus / drag,
       // and is disabled entirely under prefers-reduced-motion.
-      if (!reduceMotion && track.scrollWidth > track.clientWidth + 8) {
+      if (!reduceMotion) {
+        // Two CSS features fight a JS marquee and must be neutralised on this
+        // track: scroll-snap (x mandatory) snaps each tiny step back to a card
+        // edge, and scroll-behavior:smooth (inherited from html) animates every
+        // scrollLeft assignment so the 0.6px/frame steps never accumulate.
+        track.style.scrollSnapType = 'none';
+        track.style.scrollBehavior = 'auto';
         var auto = true, dir = 1;
         carousel.addEventListener('mouseenter', function () { auto = false; });
         carousel.addEventListener('mouseleave', function () { auto = true; });
         carousel.addEventListener('focusin', function () { auto = false; });
         carousel.addEventListener('focusout', function () { auto = true; });
+        // Measure overflow INSIDE the loop, not once up-front: the track's width
+        // isn't final until images/fonts/reveal settle, so an early check can see
+        // 0 overflow and never start. This kicks in as soon as it overflows.
         (function loop() {
-          if (auto && !isDown) {
-            track.scrollLeft += 0.4 * dir;
-            if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 1) dir = -1;
+          var max = track.scrollWidth - track.clientWidth;
+          if (auto && !isDown && max > 8) {
+            track.scrollLeft += 0.6 * dir;
+            if (track.scrollLeft >= max - 1) dir = -1;
             else if (track.scrollLeft <= 0) dir = 1;
           }
           requestAnimationFrame(loop);
