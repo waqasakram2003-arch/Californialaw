@@ -306,3 +306,18 @@ function nav_active(string $path): string
     $current = $_SERVER['SCRIPT_NAME'] ?? '';
     return str_contains($current, $path) ? ' aria-current="page"' : '';
 }
+
+/**
+ * Card thumbnail for a practice area. The detail-page HERO keeps the original
+ * cinematic image ($area['image'], e.g. pa-<slug>.webp); the CARD prefers a
+ * separate real photo at pa-<slug>-card.webp when that file exists, else falls
+ * back to the shared image. Lets card and hero use different images.
+ */
+function pa_card_image(array $area): string
+{
+    $img = $area['image'] ?? '';
+    if ($img === '') return '';
+    $card = preg_replace('/(\.[a-z0-9]+)$/i', '-card$1', $img);
+    $root = $_SERVER['DOCUMENT_ROOT'] ?: dirname(__DIR__);
+    return ($card && is_file($root . $card)) ? $card : $img;
+}

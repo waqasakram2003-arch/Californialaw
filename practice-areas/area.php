@@ -232,7 +232,7 @@ require __DIR__ . '/../includes/header.php';
       <?php foreach ($related as $rel): ?>
         <a class="pa-card" href="/practice-areas/<?= e($rel['slug']) ?>/">
           <?php if (!empty($rel['image'])): ?>
-            <span class="pa-card__media"><img src="<?= e($rel['image']) ?>" alt="" loading="lazy"></span>
+            <span class="pa-card__media"><img src="<?= e(pa_card_image($rel)) ?>" alt="" loading="lazy"></span>
           <?php endif; ?>
           <span class="pa-card__icon"><?= practice_icon($rel['icon'] ?? '') ?></span>
           <h3 class="pa-card__title"><?= e($rel['title']) ?></h3>

@@ -75,7 +75,7 @@ require __DIR__ . '/../includes/header.php';
       <?php foreach ($areas as $area): ?>
         <a class="pa-card" href="/practice-areas/<?= e($area['slug']) ?>/" data-category="<?= e($area['category']) ?>">
           <?php if (!empty($area['image'])): ?>
-            <span class="pa-card__media"><img src="<?= e($area['image']) ?>" alt="" loading="lazy"></span>
+            <span class="pa-card__media"><img src="<?= e(pa_card_image($area)) ?>" alt="" loading="lazy"></span>
           <?php endif; ?>
           <span class="pa-card__icon"><?= practice_icon($area['icon'] ?? '') ?></span>
           <h2 class="pa-card__title"><?= e($area['title']) ?></h2>

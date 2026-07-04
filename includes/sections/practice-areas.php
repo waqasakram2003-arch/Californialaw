@@ -14,7 +14,7 @@ $areas = getPracticeAreas();
         <a class="pa-card animate-on-scroll" data-anim="<?= $i % 2 ? 'right' : 'left' ?>"
            href="/practice-areas/<?= e($area['slug']) ?>/">
           <?php if (!empty($area['image'])): ?>
-            <span class="pa-card__media"><img src="<?= e($area['image']) ?>" alt="" loading="lazy"></span>
+            <span class="pa-card__media"><img src="<?= e(pa_card_image($area)) ?>" alt="" loading="lazy"></span>
           <?php endif; ?>
           <span class="pa-card__icon"><?= practice_icon($area['icon'] ?? '') ?></span>
           <h3 class="pa-card__title"><?= e($area['title']) ?></h3>
