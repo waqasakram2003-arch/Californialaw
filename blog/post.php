@@ -103,7 +103,7 @@ require __DIR__ . '/../includes/header.php';
 
   <!-- 2. FEATURED IMAGE -->
   <div class="post-featured" data-cat="<?= e(blog_cat_key($post['cat_slug'])) ?>" aria-hidden="true">
-    <?php if (!empty($post['featured_image'])): ?><img src="<?= e($post['featured_image']) ?>" alt="" loading="lazy"><?php endif; ?>
+    <?php if (!empty($post['featured_image'])): ?><img src="<?= e(asset_url($post['featured_image'])) ?>" alt="" loading="lazy"><?php endif; ?>
   </div>
 
   <!-- 3. CONTENT -->

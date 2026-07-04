@@ -6,7 +6,7 @@ $url = blog_post_url($post['slug']);
 <article class="blog-card">
   <a class="blog-card__media" data-cat="<?= e(blog_cat_key($post['cat_slug'] ?? '')) ?>" href="<?= e($url) ?>" tabindex="-1" aria-hidden="true">
     <?php if (!empty($post['featured_image'])): ?>
-      <img src="<?= e($post['featured_image']) ?>" alt="" loading="lazy">
+      <img src="<?= e(asset_url($post['featured_image'])) ?>" alt="" loading="lazy">
     <?php endif; ?>
     <?php if (!empty($post['cat_name'])): ?>
       <span class="blog-card__badge"><?= e($post['cat_name']) ?></span>

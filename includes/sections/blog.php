@@ -14,7 +14,7 @@ $posts = getRecentPosts(3);
         <article class="blog-card">
           <a class="blog-card__media blog-card__media--<?= ($i % 3) + 1 ?>" href="/blog/<?= e($post['slug']) ?>/" aria-hidden="true" tabindex="-1">
             <?php if (!empty($post['featured_image'])): ?>
-              <img src="<?= e($post['featured_image']) ?>" alt="" loading="lazy">
+              <img src="<?= e(asset_url($post['featured_image'])) ?>" alt="" loading="lazy">
             <?php endif; ?>
             <span class="blog-card__cat"><?= e($post['category'] ?? 'Article') ?></span>
           </a>
