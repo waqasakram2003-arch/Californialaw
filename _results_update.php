@@ -31,15 +31,15 @@ $amounts = [
 
 try {
     $pdo = db();
-    $stmt = $pdo->prepare('UPDATE case_results SET amount = :amt WHERE id = :id');
+    $stmt = $pdo->prepare('UPDATE case_results SET result_amount = :amt WHERE id = :id');
     $n = 0;
     foreach ($amounts as $id => $amt) {
         $stmt->execute([':amt' => $amt, ':id' => $id]);
         $n += $stmt->rowCount();
     }
     echo "Updated {$n} case_results rows.\n\nNow:\n";
-    foreach ($pdo->query("SELECT id, title, amount FROM case_results ORDER BY id") as $r) {
-        echo "  {$r['id']}. {$r['title']} — {$r['amount']}\n";
+    foreach ($pdo->query("SELECT id, case_type, result_amount FROM case_results ORDER BY id") as $r) {
+        echo "  {$r['id']}. {$r['case_type']} — {$r['result_amount']}\n";
     }
     @unlink(__FILE__); // self-destruct
     echo "\nDONE. This script has removed itself.\n";
