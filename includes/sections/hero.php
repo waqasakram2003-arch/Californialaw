@@ -66,7 +66,7 @@
           <span class="hero__stat-label">Recovered for Clients</span>
         </li>
         <li>
-          <span class="hero__stat-num" data-counter data-target="1000" data-suffix="+">0+</span>
+          <span class="hero__stat-num" data-counter data-target="800" data-suffix="+">0+</span>
           <span class="hero__stat-label">Cases Handled</span>
         </li>
         <li>

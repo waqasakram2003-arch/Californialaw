@@ -2,7 +2,7 @@
 $results = getCaseResults();
 $stats = [
     ['prefix' => '$', 'target' => 50,  'suffix' => 'M+', 'label' => 'Recovered for Clients'],
-    ['prefix' => '',  'target' => 1000,'suffix' => '+',  'label' => 'Cases Handled'],
+    ['prefix' => '',  'target' => 800, 'suffix' => '+',  'label' => 'Cases Handled'],
     ['prefix' => '',  'target' => 25,  'suffix' => '+',  'label' => 'Years of Experience'],
     ['prefix' => '',  'target' => 500, 'suffix' => '+',  'label' => '5-Star Reviews'],
 ];
