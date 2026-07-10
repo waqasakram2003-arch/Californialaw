@@ -25,7 +25,7 @@
       <!-- Col 1: brand + social -->
       <div class="footer-col footer-col--brand">
         <!-- Footer is always dark, so always use the light-text (dark) logo — no theme swap. -->
-        <img class="footer-logo" src="<?= asset_url('/assets/images/logo-dark.png') ?>" width="474" height="132"
+        <img class="footer-logo" src="<?= asset_url('/assets/images/logo-dark.webp') ?>" width="474" height="132"
              alt="<?= e(cfg('firm_name', SITE_NAME)) ?>">
         <p class="footer-tagline">Fighting for California&rsquo;s Injured.<br>No Fee Unless We Win.</p>
         <?php

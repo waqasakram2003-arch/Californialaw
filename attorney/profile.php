@@ -72,6 +72,16 @@ require __DIR__ . '/../includes/header.php';
         <p class="eyebrow">California Personal Injury Attorney</p>
         <h1><?= e($att['name']) ?></h1>
         <p class="attorney-hero__title"><?= e($att['title']) ?></p>
+        <?php if (!empty($d['badges']) && is_array($d['badges'])): ?>
+          <ul class="attorney-hero__badges" role="list">
+            <?php foreach ($d['badges'] as $b): ?>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg>
+                <?= e($b) ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
         <div class="attorney-hero__cta">
           <a class="btn btn--primary" href="#contact-attorney" data-ripple>Contact <?= e(explode(' ', $att['name'])[0]) ?></a>
           <a class="btn btn--on-primary" href="tel:<?= e(SITE_PHONE_RAW) ?>">Call <?= e(SITE_PHONE) ?></a>

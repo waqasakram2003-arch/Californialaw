@@ -232,8 +232,8 @@ html[data-theme="dark"] .btn--ghost { color: var(--color-text); }
   min-height: var(--header-h);
 }
 .brand { display: flex; align-items: center; gap: var(--space-3); }
-.brand__logo { height: 48px; width: auto; }
-@media (max-width: 480px) { .brand__logo { height: 40px; } }
+.brand__logo { height: 54px; width: auto; }
+@media (max-width: 480px) { .brand__logo { height: 44px; } }
 /* R1.1 — keep the logo legible on dark/transparent headers (theme.js swaps the
    src to logo-dark.svg; this drop-shadow guarantees contrast over any backdrop). */
 html[data-theme="dark"] .brand__logo { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45)); }
@@ -435,7 +435,7 @@ html[data-theme="dark"] .nav-toggle { color: var(--color-text); }
 .site-header { transition: background-color var(--transition-base), box-shadow var(--transition-base); }
 .site-header.is-scrolled { box-shadow: var(--shadow-md); }
 .site-header.is-scrolled .site-header__inner { min-height: 60px; }
-.site-header.is-scrolled .brand__logo { height: 40px; }
+.site-header.is-scrolled .brand__logo { height: 46px; }
 .site-header__inner, .brand__logo { transition: min-height var(--transition-base), height var(--transition-base); }
 
 /* ===========================================================================
@@ -543,7 +543,7 @@ html[data-theme="dark"] .nav-toggle { color: var(--color-text); }
 .footer-brand__name { font-family: var(--font-heading); color: #fff; font-size: var(--text-xl); }
 
 /* Col 1: brand */
-.footer-logo { height: 64px; width: auto; margin-bottom: var(--space-4); }
+.footer-logo { height: 72px; width: auto; margin-bottom: var(--space-4); }
 .footer-tagline { font-family: var(--font-body); font-weight: 500; font-size: var(--text-lg); color: rgba(255,255,255,0.9); line-height: 1.4; }
 /* Social icons — force horizontal (beats the .footer-col ul grid) + animated hover */
 .footer-col .footer-social { display: flex; flex-direction: row; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); padding: 0; }
