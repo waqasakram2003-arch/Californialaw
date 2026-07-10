@@ -59,13 +59,12 @@ define('DB_CHARSET', 'utf8mb4');
 // ---------------------------------------------------------------------------
 // Site constants
 // ---------------------------------------------------------------------------
-define('SITE_NAME', 'Golden State Injury Lawyers');
-define('SITE_TAGLINE', 'California Personal Injury Attorney');
-// Sample numbers use the 555-01xx range reserved for fictional use. Replace on launch.
-define('SITE_PHONE', '(213) 555-0188');           // TODO: real number
-define('SITE_PHONE_RAW', '+12135550188');         // tel: link
-define('SITE_EMAIL', 'intake@goldenstateinjury.example'); // TODO: real email
-define('SITE_ADDRESS', '633 W 5th St, Los Angeles, CA 90071'); // TODO: real address
+define('SITE_NAME', 'Mason Law, P.C.');
+define('SITE_TAGLINE', 'California Trial Attorneys');
+define('SITE_PHONE', '(916) 587-2997');
+define('SITE_PHONE_RAW', '+19165872997');         // tel: link
+define('SITE_EMAIL', 'info@lawyermason.com'); // TODO: confirm this inbox exists
+define('SITE_ADDRESS', '1024 Iron Point Road, Folsom, CA 95630'); // primary (Folsom) office
 
 // Base URL — no trailing slash. Used for canonical + OG tags.
 // Auto-detect for local dev; hard-code on production for safety.

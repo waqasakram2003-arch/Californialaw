@@ -104,7 +104,7 @@ $navAreas = getPracticeAreas();
   <style>html{background:#F8F9FC}html[data-theme="dark"]{background:#0A0F1E}body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;background:#F8F9FC;color:#2D3748;-webkit-font-smoothing:antialiased}html[data-theme="dark"] body{background:#0A0F1E;color:#E2E8F0}.site-header{position:sticky;top:0;min-height:76px}img,svg,video{max-width:100%;display:block}a{color:inherit;text-decoration:none}</style>
 
   <!-- Styles (cache-busted; combined + minified in production) -->
-  <?php asset_styles(array_merge(['/assets/css/design-system.css', '/assets/css/main.css', '/assets/css/animations.css', '/assets/css/phase10.css', '/assets/css/media-fx.css'], $seo['styles'] ?? [])); ?>
+  <?php asset_styles(array_merge(['/assets/css/design-system.css', '/assets/css/main.css', '/assets/css/animations.css', '/assets/css/phase10.css', '/assets/css/media-fx.css', '/assets/css/chatbot.css'], $seo['styles'] ?? [])); ?>
 
   <!-- Schema.org -->
   <?= schemaSitewide() ?>

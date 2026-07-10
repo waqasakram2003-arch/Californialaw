@@ -1,58 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 392 112" width="392" height="112"
-     role="img" aria-label="Golden State Injury Lawyers — Fighting for California's Injured. No Fee Unless We Win.">
-  <title>Golden State Injury Lawyers</title>
+     role="img" aria-label="Mason Law, P.C. — California Trial Attorneys">
+  <title>Mason Law, P.C.</title>
   <style>
     /* Gentle balancing of the scale beam. Honors reduced-motion. */
-    .gsil-beam {
+    .ml-beam {
       transform-box: view-box;
-      transform-origin: 56px 46px;
-      animation: gsil-balance 4.5s ease-in-out infinite;
+      transform-origin: 56px 92px;
+      animation: ml-balance 5s ease-in-out infinite;
     }
-    @keyframes gsil-balance {
-      0%, 100% { transform: rotate(-2.6deg); }
-      50%      { transform: rotate(2.6deg); }
+    @keyframes ml-balance {
+      0%, 100% { transform: rotate(-2deg); }
+      50%      { transform: rotate(2deg); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .gsil-beam { animation: none; transform: none; }
+      .ml-beam { animation: none; transform: none; }
     }
-    .gsil-name { font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif; font-weight: 700; }
-    .gsil-tag  { font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif; font-weight: 500; }
+    .ml-mono { font-family: Georgia, 'Times New Roman', 'Playfair Display', serif; font-weight: 700; }
+    .ml-name { font-family: Georgia, 'Times New Roman', 'Playfair Display', serif; font-weight: 700; }
+    .ml-tag  { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 500; }
   </style>
 
-  <!-- ================= ICON: shield + scales ================= -->
+  <!-- ================= EMBLEM: shield + monogram + scales ================= -->
   <g>
     <!-- Shield -->
     <path d="M22 26 L90 26 L90 58 C90 84 74 99 56 106 C38 99 22 84 22 58 Z"
           fill="rgba(27,42,74,0.04)" stroke="#1B2A4A" stroke-width="2.4" stroke-linejoin="round"/>
-    <!-- Gold accent line near shield crown -->
-    <path d="M31 32 L81 32" stroke="#C8A96E" stroke-width="1.6" stroke-linecap="round" opacity="0.9"/>
-
-    <!-- Static stand: top knob, central post, base -->
-    <circle cx="56" cy="40" r="3.1" fill="#C8A96E"/>
-    <line x1="56" y1="42" x2="56" y2="84" stroke="#1B2A4A" stroke-width="2.6" stroke-linecap="round"/>
-    <path d="M48 85 L64 85" stroke="#1B2A4A" stroke-width="2.6" stroke-linecap="round"/>
-    <path d="M44 90 L68 90" stroke="#1B2A4A" stroke-width="3" stroke-linecap="round"/>
-
-    <!-- Balancing beam + two pans -->
-    <g class="gsil-beam">
-      <line x1="36" y1="46" x2="76" y2="46" stroke="#1B2A4A" stroke-width="2.6" stroke-linecap="round"/>
-      <circle cx="36" cy="46" r="2" fill="#C8A96E"/>
-      <circle cx="76" cy="46" r="2" fill="#C8A96E"/>
-      <circle cx="56" cy="46" r="2.2" fill="#1B2A4A"/>
-      <!-- Left pan -->
-      <path d="M36 46 L29 60 M36 46 L43 60" stroke="#1B2A4A" stroke-width="1.4"/>
-      <path d="M28 60 Q36 70 44 60" fill="none" stroke="#1B2A4A" stroke-width="2.2" stroke-linecap="round"/>
-      <!-- Right pan -->
-      <path d="M76 46 L69 60 M76 46 L83 60" stroke="#1B2A4A" stroke-width="1.4"/>
-      <path d="M68 60 Q76 70 84 60" fill="none" stroke="#1B2A4A" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Gold crown line -->
+    <path d="M32 33 L80 33" stroke="#C8A96E" stroke-width="1.6" stroke-linecap="round" opacity="0.9"/>
+    <!-- Serif M monogram -->
+    <text class="ml-mono" x="56" y="80" text-anchor="middle" font-size="48" letter-spacing="0.5" fill="#1B2A4A">M</text>
+    <!-- Gold scales foot: balance beam + two pans -->
+    <g class="ml-beam">
+      <line x1="44" y1="90" x2="68" y2="90" stroke="#C8A96E" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="44" cy="90" r="1.9" fill="#C8A96E"/>
+      <circle cx="68" cy="90" r="1.9" fill="#C8A96E"/>
+      <circle cx="56" cy="90" r="1.6" fill="#1B2A4A"/>
     </g>
   </g>
 
   <!-- ================= WORDMARK ================= -->
-  <text class="gsil-name" x="112" y="48" font-size="27" letter-spacing="0.3" fill="#1B2A4A">Golden State</text>
-  <text class="gsil-name" x="112" y="79" font-size="27" letter-spacing="0.3" fill="#1B2A4A">Injury Lawyers</text>
+  <text class="ml-name" x="112" y="60" font-size="41" letter-spacing="1.2" fill="#1B2A4A">MASON LAW</text>
   <!-- Gold accent underline -->
-  <path d="M113 88 L201 88" stroke="#C8A96E" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M113 71 L250 71" stroke="#C8A96E" stroke-width="2.4" stroke-linecap="round"/>
   <!-- Tagline -->
-  <text class="gsil-tag" x="113" y="103" font-size="9.6" letter-spacing="0.2" fill="#1B2A4A" opacity="0.72">Fighting for California&#8217;s Injured  &#183;  No Fee Unless We Win.</text>
+  <text class="ml-tag" x="113" y="90" font-size="10.5" letter-spacing="1.4" fill="#1B2A4A" opacity="0.74">P.C.  &#183;  CALIFORNIA TRIAL ATTORNEYS</text>
 </svg>
