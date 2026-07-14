@@ -63,7 +63,7 @@ define('SITE_NAME', 'Mason Law, P.C.');
 define('SITE_TAGLINE', 'California Trial Attorneys');
 define('SITE_PHONE', '(916) 587-2997');
 define('SITE_PHONE_RAW', '+19165872997');         // tel: link
-define('SITE_EMAIL', 'info@lawyermason.com'); // TODO: confirm this inbox exists
+define('SITE_EMAIL', 'civil@masonlaw.co');
 define('SITE_ADDRESS', '1024 Iron Point Road, Folsom, CA 95630'); // primary (Folsom) office
 
 // Base URL — no trailing slash. Used for canonical + OG tags.

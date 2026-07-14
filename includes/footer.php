@@ -7,7 +7,7 @@
       <div class="footer-cta__copy">
         <p class="footer-cta__eyebrow">Free, Confidential Consultation</p>
         <h2 class="footer-cta__title">Injured? Let&rsquo;s talk about your case.</h2>
-        <p class="footer-cta__text">No upfront fees &mdash; you pay nothing unless we recover for you. Available 24/7 across California.</p>
+        <p class="footer-cta__text">Free, confidential consultations. We&rsquo;ll listen to your situation and explain your options.</p>
       </div>
       <div class="footer-cta__actions">
         <a class="btn btn--primary btn--lg" href="/case-evaluation.php" data-ripple>Free Case Evaluation</a>
@@ -55,7 +55,7 @@
         <h3>Quick Links</h3>
         <ul role="list">
           <li><a href="/about.php">About Us</a></li>
-          <li><a href="/results.php">Case Results</a></li>
+          <li><a href="/reviews.php">Client Reviews</a></li>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/faq.php">FAQ</a></li>
           <li><a href="/case-evaluation.php">Free Case Evaluation</a></li>
@@ -97,7 +97,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
           Get Directions
         </a>
-        <p class="footer-hours">Mon&ndash;Fri 8am&ndash;6pm &middot; 24/7 phone intake</p>
+        <p class="footer-hours"><?= e(cfg('office_hours', 'Mon–Fri, 9:00am–5:00pm')) ?></p>
+        <?php if ($calUrl = cfg('calendly_url', '')): ?>
+        <a class="btn btn--primary btn--sm" style="margin-top:.75rem" href="<?= e($calUrl) ?>" target="_blank" rel="noopener" data-calendly>Schedule a Consultation</a>
+        <?php endif; ?>
       </div>
     </div>
 
@@ -108,7 +111,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>Serving all 58 California counties.</span>
+      <span>Serving Sacramento, Placer, El Dorado &amp; Marin counties.</span>
       <span class="footer-bottom__links">
         <a href="/privacy-policy.php">Privacy Policy</a> &middot;
         <a href="/terms.php">Terms</a> &middot;
@@ -129,6 +132,9 @@
 
 <!-- CCPA cookie consent banner (only renders when trackers are configured + undecided) -->
 <?php analytics_banner(); ?>
+
+<!-- Calendly popup — activates once calendly_url is set in Settings; links with [data-calendly] open the popup -->
+<?php require __DIR__ . '/calendly.php'; ?>
 
 <?php asset_scripts(array_merge(['/assets/js/theme.js', '/assets/js/main.js', '/assets/js/animations.js', '/assets/js/forms.js', '/assets/js/booking.js', '/assets/js/phase10.js', '/assets/js/chatbot.js'], $page['scripts'] ?? [])); ?>
 </body>

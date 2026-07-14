@@ -6,17 +6,16 @@ require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/repo.php';
 
 $milestones = [
-    ['year' => '2006', 'title' => 'Our Firm Is Founded', 'body' => 'Elena Marquez opens the firm in Los Angeles with a focus on serious injury and wrongful death cases.'],
-    ['year' => '2012', 'title' => 'Statewide Reach', 'body' => 'The firm expands to serve injured Californians across Northern California and the Central Valley.'],
-    ['year' => '2018', 'title' => 'A Growing Team', 'body' => 'Experienced trial attorneys join the firm, broadening the practice areas we handle for our clients.'],
-    ['year' => '2024', 'title' => 'All 58 Counties', 'body' => 'Today we represent injured clients throughout California, traveling to meet clients where they are.'],
+    ['year' => '2013', 'title' => 'The Firm Is Founded', 'body' => 'Shannon Ramos founds Mason Law, P.C. to give California families and individuals a strong, personal advocate in the courtroom.'],
+    ['year' => 'Since 2013', 'title' => 'Earning Trust in the Courtroom', 'body' => 'The firm builds its reputation on a powerful courtroom presence, honest counsel, and hands-on client service.'],
+    ['year' => 'Today', 'title' => 'Serving Four Counties', 'body' => 'Mason Law, P.C. represents clients across Sacramento, Placer, El Dorado, and Marin counties &mdash; with Shannon Ramos recognized among The National Top 100 Trial Lawyers.'],
 ];
 
 $values = [
     ['name' => 'Compassion', 'icon' => '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z"/>', 'desc' => 'We treat every client with dignity and care, and we take the time to listen. You are a person to us, never a case number.'],
     ['name' => 'Integrity', 'icon' => '<path d="M12 2 4 7v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V7z"/><path d="M9 12l2 2 4-4"/>', 'desc' => 'We give honest, straightforward guidance about your options &mdash; even when it is not what you hoped to hear.'],
-    ['name' => 'Tenacity', 'icon' => '<path d="M14 4l6 6M3 21l9-9M12.5 6.5l5 5M16 2l6 6-4 4-6-6z"/>', 'desc' => 'We prepare every case thoroughly and advocate relentlessly for our clients within the bounds of the law.'],
-    ['name' => 'Accessibility', 'icon' => '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', 'desc' => 'Available 24/7, we come to you anywhere in California, and hablamos espa&ntilde;ol. Help should be easy to reach.'],
+    ['name' => 'Loyalty', 'icon' => '<path d="M12 2 4 7v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V7z"/><path d="M12 8v4M12 15h.01"/>', 'desc' => 'We stand by our clients from the first call through the final hearing &mdash; responsive, dependable, and fully in your corner.'],
+    ['name' => 'Client Service', 'icon' => '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', 'desc' => 'We answer your questions in plain language, keep you informed at every step, and hablamos espa&ntilde;ol. Help should be easy to reach.'],
 ];
 
 $community = [
@@ -25,15 +24,10 @@ $community = [
     ['icon' => '<path d="M20 6 9 17l-5-5"/>', 'title' => 'Pro Bono Service', 'body' => 'Volunteering time and resources to community legal clinics that help neighbors in need.'],
 ];
 
-$associations = [
-    'State Bar of California', 'Consumer Attorneys of California', 'American Association for Justice',
-    'Los Angeles County Bar Association', 'American Bar Association', 'Bar Association of San Francisco',
-];
-
 $page = [
     'title'       => 'About Us',
-    'description' => 'Learn about Golden State Injury Lawyers — a California personal injury firm dedicated to '
-                   . 'fighting for injured Californians. No fee unless we win.',
+    'description' => 'Learn about Mason Law, P.C. — a California trial firm founded in 2013, serving clients '
+                   . 'across Sacramento, Placer, El Dorado, and Marin counties.',
     'path'        => '/about.php',
     'styles'      => ['/assets/css/home.css', '/assets/css/about.css'],
     'scripts'     => ['/assets/js/home.js', '/assets/js/about.js'],
@@ -91,7 +85,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container container--narrow text-center animate-on-scroll">
     <p class="eyebrow">Our Mission</p>
     <blockquote class="mission__quote">
-      &ldquo;To fight for injured Californians with compassion and tenacity &mdash; giving every client a voice, and never charging a fee unless we win.&rdquo;
+      &ldquo;We stand firm in the belief that our work ethic, combined with our commitment to provide the highest level of customer service, will always result in an unsurpassed benefit to our clients.&rdquo;
     </blockquote>
   </div>
 </section>
@@ -160,27 +154,6 @@ require __DIR__ . '/includes/header.php';
         </div>
       <?php endforeach; ?>
     </div>
-  </div>
-</section>
-
-<!-- 7. ASSOCIATIONS -->
-<section class="section section--muted">
-  <div class="container container--wide">
-    <div class="section-head section-head--center animate-on-scroll">
-      <p class="eyebrow">Memberships</p>
-      <h2 class="has-underline">Associations &amp; Memberships</h2>
-    </div>
-    <div class="assoc-grid stagger-children">
-      <?php foreach ($associations as $assoc): ?>
-        <div class="assoc-box">
-          <span class="assoc-box__seal" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="13" stroke-dasharray="2 3"/><path d="M24 15v18M16 22h16M18 28h12" stroke-linecap="round"/></svg>
-          </span>
-          <span class="assoc-box__name"><?= e($assoc) ?></span>
-        </div>
-      <?php endforeach; ?>
-    </div>
-    <p class="disclaimer-note" style="max-width:64ch;margin:2rem auto 0;text-align:center;">Membership in an organization does not constitute certification as a specialist or any guarantee of results.</p>
   </div>
 </section>
 

@@ -22,7 +22,9 @@ $boolish = static function ($v): int {
 /* --- Step 1 --- */
 $incidentType = sanitize($input['incident_type'] ?? '');
 $incidentDate = trim((string) ($input['incident_date'] ?? ''));
-$location     = sanitize($input['location'] ?? '');
+$county       = sanitize($input['county'] ?? ($input['location'] ?? ''));
+$opposingParty     = sanitize($input['opposing_party'] ?? '');
+$opposingHasLawyer = sanitize($input['opposing_has_lawyer'] ?? '');
 $description  = mb_substr(sanitize($input['description'] ?? ''), 0, 600);
 
 // Validate date (Y-m-d) or null.
@@ -77,7 +79,9 @@ if ($errors) {
 }
 
 $details = [
-    'location'         => $location,
+    'county'             => $county,
+    'opposing_party'     => $opposingParty,
+    'opposing_has_lawyer'=> $opposingHasLawyer,
     'treatment_type'   => $treatType,
     'physicians'       => $physicians,
     'still_treating'   => (bool) $stillTreating,
@@ -119,7 +123,10 @@ try {
 /* --- Emails (non-fatal) --- */
 $firmBody = "New case evaluation request\n\n"
     . "Name: $name\nPhone: $phone\nEmail: $email\n"
-    . "Incident: $incidentType" . ($location ? " in $location" : '') . ($dateValid ? " on $dateValid" : '') . "\n"
+    . "County: " . ($county ?: 'n/a') . "\n"
+    . "Opposing party: " . ($opposingParty ?: 'n/a') . "\n"
+    . "Opposing party has a lawyer: " . ($opposingHasLawyer ?: 'n/a') . "\n"
+    . "Incident: $incidentType" . ($dateValid ? " on $dateValid" : '') . "\n"
     . "Injuries: $injuries\nMedical treatment: " . ($medical ? 'Yes' : 'No')
     . "\nPolice report: " . ($policeReport ? 'Yes' : 'No')
     . "\nInsurance claim: " . ($insuranceClaim ? 'Yes' : 'No')

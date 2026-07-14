@@ -156,7 +156,7 @@ $navAreas = getPracticeAreas();
         </li>
 
         <li class="main-nav__item"><a class="main-nav__link" href="/about.php"<?= nav_active('/about') ?>>About</a></li>
-        <li class="main-nav__item"><a class="main-nav__link" href="/results.php"<?= nav_active('/results') ?>>Results</a></li>
+        <li class="main-nav__item"><a class="main-nav__link" href="/reviews.php"<?= nav_active('/reviews') ?>>Reviews</a></li>
         <li class="main-nav__item"><a class="main-nav__link" href="/blog/"<?= nav_active('/blog') ?>>Blog</a></li>
         <li class="main-nav__item"><a class="main-nav__link" href="/contact.php"<?= nav_active('/contact') ?>>Contact</a></li>
       </ul>

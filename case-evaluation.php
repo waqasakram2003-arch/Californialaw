@@ -20,10 +20,8 @@ $incidentTypes = [
     ['v' => 'Other', 'icon' => ''],
 ];
 
-$caCities = ['Los Angeles','San Diego','San Jose','San Francisco','Fresno','Sacramento','Long Beach',
-    'Oakland','Bakersfield','Anaheim','Santa Ana','Riverside','Stockton','Irvine','Chula Vista','Fremont',
-    'San Bernardino','Modesto','Fontana','Oxnard','Moreno Valley','Glendale','Huntington Beach','Santa Clarita',
-    'Garden Grove','Santa Rosa','Oceanside','Rancho Cucamonga','Ontario','Elk Grove','Other / Not Listed'];
+$caCounties = ['Sacramento','Placer','El Dorado','Marin','Yolo','Solano','Sutter','Yuba','Nevada','Amador',
+    'San Joaquin','Contra Costa','Alameda','Other California county'];
 
 $injuriesList = ['Broken bones / fractures','Head or brain injury','Neck or back injury','Spinal cord injury',
     'Cuts, bruises, lacerations','Burns','Internal injuries','Soft tissue injury','Emotional distress','Other'];
@@ -94,10 +92,10 @@ require __DIR__ . '/includes/header.php';
             <input type="date" id="ce-date" name="incident_date" max="">
           </div>
           <div class="field">
-            <label for="ce-loc">Location (California city)</label>
-            <select id="ce-loc" name="location">
-              <option value="">Select a city</option>
-              <?php foreach ($caCities as $c): ?><option value="<?= e($c) ?>"><?= e($c) ?></option><?php endforeach; ?>
+            <label for="ce-loc">County</label>
+            <select id="ce-loc" name="county">
+              <option value="">Select a county</option>
+              <?php foreach ($caCounties as $c): ?><option value="<?= e($c) ?>"><?= e($c) ?></option><?php endforeach; ?>
             </select>
           </div>
         </div>
@@ -106,6 +104,22 @@ require __DIR__ . '/includes/header.php';
           <label for="ce-desc">Brief description</label>
           <textarea id="ce-desc" name="description" rows="4" maxlength="300" data-counter placeholder="What happened?"></textarea>
           <span class="char-counter"><span data-counter-out>0</span>/300</span>
+        </div>
+
+        <div class="att-form__row">
+          <div class="field">
+            <label for="ce-opposing">Opposing party&rsquo;s name <span class="req">*</span></label>
+            <input type="text" id="ce-opposing" name="opposing_party" required placeholder="Full name of the other party">
+            <span class="field__hint text-muted" style="font-size:var(--text-sm)">Required so we can run a conflicts check.</span>
+          </div>
+          <div class="field">
+            <label>Does the opposing party have a lawyer?</label>
+            <div class="toggle-group">
+              <label class="toggle"><input type="radio" name="opposing_has_lawyer" value="yes"><span>Yes</span></label>
+              <label class="toggle"><input type="radio" name="opposing_has_lawyer" value="no" checked><span>No</span></label>
+              <label class="toggle"><input type="radio" name="opposing_has_lawyer" value="unknown"><span>Not sure</span></label>
+            </div>
+          </div>
         </div>
 
         <div class="step__nav">
@@ -177,7 +191,7 @@ require __DIR__ . '/includes/header.php';
         <legend class="step__title">How can we reach you?</legend>
 
         <div class="att-form__row">
-          <div class="field"><label for="ce-name">Full name <span class="req">*</span></label><input type="text" id="ce-name" name="name" required autocomplete="name" placeholder="Your name"><span class="field__error" aria-live="polite"></span></div>
+          <div class="field"><label for="ce-name">Your full legal name <span class="req">*</span></label><input type="text" id="ce-name" name="name" required autocomplete="name" placeholder="Your official name"><span class="field__error" aria-live="polite"></span></div>
           <div class="field"><label for="ce-phone">Phone <span class="req">*</span></label><input type="tel" id="ce-phone" name="phone" required autocomplete="tel" data-phone-mask placeholder="(000) 000-0000"><span class="field__error" aria-live="polite"></span></div>
         </div>
         <div class="field"><label for="ce-email">Email <span class="req">*</span></label><input type="email" id="ce-email" name="email" required autocomplete="email" placeholder="you@example.com"><span class="field__error" aria-live="polite"></span></div>

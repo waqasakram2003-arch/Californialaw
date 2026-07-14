@@ -17,8 +17,8 @@ $points = [
         'disclaimer' => '*Results may vary. Past results do not guarantee future outcomes.',
     ],
     [
-        'num' => '04', 'heading' => 'Available 24/7 — We Come to You',
-        'body' => 'Injuries do not keep business hours, and neither do we. Reach us any time, and if you cannot come to us, we will come to you anywhere in California.',
+        'num' => '04', 'heading' => 'Responsive, Personal Service',
+        'body' => 'You work directly with our team, not a call center. We answer your questions, return your calls, and keep you informed at every step of your case.',
         'icon' => '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     ],
 ];

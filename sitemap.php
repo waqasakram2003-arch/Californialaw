@@ -26,7 +26,7 @@ $add('/', 'weekly', '1.0');
 $add('/about.php', 'monthly', '0.7');
 $add('/practice-areas/', 'monthly', '0.9');
 $add('/attorney/', 'monthly', '0.7');
-$add('/results.php', 'monthly', '0.8');
+$add('/reviews.php', 'monthly', '0.8');
 $add('/blog/', 'daily', '0.8');
 $add('/faq.php', 'monthly', '0.6');
 $add('/resources.php', 'monthly', '0.5');
