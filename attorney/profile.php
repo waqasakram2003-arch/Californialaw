@@ -74,7 +74,21 @@ require __DIR__ . '/../includes/header.php';
         <p class="attorney-hero__title"><?= e($att['title']) ?></p>
         <?php if (!empty($d['badges']) && is_array($d['badges'])): ?>
           <?php if (preg_grep('/top\s*100/i', $d['badges'])): ?>
-            <img class="attorney-hero__seal" src="/assets/images/badge-top100.svg" width="96" height="96" loading="lazy" alt="The National Top 100 Trial Lawyers badge" style="width:96px;height:96px;margin:.25rem 0 .5rem">
+            <svg class="attorney-hero__seal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="96" height="96" role="img" aria-label="The National Top 100 Trial Lawyers" style="width:96px;height:96px;margin:.25rem 0 .5rem">
+              <defs>
+                <linearGradient id="b100g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8C97E"/><stop offset="1" stop-color="#C8A96E"/></linearGradient>
+                <path id="b100arcTop" d="M40,100 a60,60 0 0 1 120,0" fill="none"/>
+                <path id="b100arcBot" d="M44,108 a56,56 0 0 0 112,0" fill="none"/>
+              </defs>
+              <circle cx="100" cy="100" r="94" fill="#0A0F1E"/>
+              <circle cx="100" cy="100" r="94" fill="none" stroke="url(#b100g)" stroke-width="4"/>
+              <circle cx="100" cy="100" r="80" fill="none" stroke="url(#b100g)" stroke-width="1.5" stroke-dasharray="2 4"/>
+              <text font-family="Georgia,serif" font-size="15" font-weight="700" letter-spacing="3" fill="url(#b100g)"><textPath href="#b100arcTop" startOffset="50%" text-anchor="middle">THE NATIONAL</textPath></text>
+              <text font-family="Georgia,serif" font-size="13" font-weight="700" letter-spacing="4" fill="url(#b100g)"><textPath href="#b100arcBot" startOffset="50%" text-anchor="middle">TRIAL LAWYERS</textPath></text>
+              <text x="100" y="96" text-anchor="middle" font-family="'Arial Black',Impact,sans-serif" font-size="46" font-weight="900" fill="url(#b100g)">TOP</text>
+              <text x="100" y="140" text-anchor="middle" font-family="'Arial Black',Impact,sans-serif" font-size="46" font-weight="900" fill="url(#b100g)">100</text>
+              <g fill="url(#b100g)"><path d="M26,100 l2.2,4.4 4.8,.7 -3.5,3.4 .8,4.8 -4.3,-2.3 -4.3,2.3 .8,-4.8 -3.5,-3.4 4.8,-.7z"/><path d="M174,100 l2.2,4.4 4.8,.7 -3.5,3.4 .8,4.8 -4.3,-2.3 -4.3,2.3 .8,-4.8 -3.5,-3.4 4.8,-.7z"/></g>
+            </svg>
           <?php endif; ?>
           <ul class="attorney-hero__badges" role="list">
             <?php foreach ($d['badges'] as $b): ?>
