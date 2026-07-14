@@ -73,6 +73,9 @@ require __DIR__ . '/../includes/header.php';
         <h1><?= e($att['name']) ?></h1>
         <p class="attorney-hero__title"><?= e($att['title']) ?></p>
         <?php if (!empty($d['badges']) && is_array($d['badges'])): ?>
+          <?php if (preg_grep('/top\s*100/i', $d['badges'])): ?>
+            <img class="attorney-hero__seal" src="/assets/images/badge-top100.svg" width="96" height="96" loading="lazy" alt="The National Top 100 Trial Lawyers badge" style="width:96px;height:96px;margin:.25rem 0 .5rem">
+          <?php endif; ?>
           <ul class="attorney-hero__badges" role="list">
             <?php foreach ($d['badges'] as $b): ?>
               <li>
