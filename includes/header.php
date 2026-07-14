@@ -120,7 +120,7 @@ $navAreas = getPracticeAreas();
 <header class="site-header" data-header>
   <div class="container container--wide site-header__inner">
     <a class="brand" href="/" aria-label="<?= e(SITE_NAME) ?> home">
-      <img class="brand__logo" src="<?= asset_url('/assets/images/logo-light.webp') ?>" width="474" height="132"
+      <img class="brand__logo" src="<?= asset_url('/assets/images/logo-light.webp') ?>" width="478" height="150"
            alt="<?= e(SITE_NAME) ?>"
            data-logo data-logo-light="<?= asset_url('/assets/images/logo-light.webp') ?>" data-logo-dark="<?= asset_url('/assets/images/logo-dark.webp') ?>">
     </a>
