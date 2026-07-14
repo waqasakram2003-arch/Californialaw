@@ -8,6 +8,8 @@ $fields = [
     'site_phone_raw'    => ['Phone (tel: link, e.g. +12135550188)', 'text'],
     'site_email'        => ['Email', 'text'],
     'site_address'      => ['Address', 'text'],
+    'office_hours'      => ['Office hours (e.g. Mon–Fri, 9:00am–5:00pm)', 'text'],
+    'calendly_url'      => ['Calendly scheduling link (e.g. https://calendly.com/you/30min — blank = hidden)', 'text'],
     'maps_embed'        => ['Google Maps embed URL', 'text'],
     'social_facebook'   => ['Facebook URL', 'text'],
     'social_x'          => ['X (Twitter) URL', 'text'],
