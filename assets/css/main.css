@@ -443,6 +443,10 @@ html[data-theme="dark"] .nav-toggle { color: var(--color-text); }
    =========================================================================== */
 @media (max-width: 1040px) {
   .nav-toggle { display: grid; }
+  /* backdrop-filter on the header makes it the containing block for fixed
+     children, which trapped the drawer inside the 77px header (short, scrolls).
+     Drop it on mobile so the fixed drawer fills the whole viewport height. */
+  .site-header { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: var(--color-bg); }
   .main-nav {
     position: fixed;
     inset: 0 0 0 auto;
