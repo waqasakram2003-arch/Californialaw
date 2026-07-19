@@ -466,6 +466,8 @@ html[data-theme="dark"] .nav-toggle { color: var(--color-text); }
     overflow-y: auto;
   }
   .main-nav.is-open { transform: translateX(0); }
+  /* Lock the page behind the open drawer so the background can't scroll. */
+  body:has(.main-nav.is-open) { overflow: hidden; }
   .main-nav__list { flex-direction: column; align-items: stretch; gap: 0; width: 100%; }
   /* Items are ALWAYS visible — the whole drawer slides in, so no per-item fade
      (a fade that can get stuck at opacity:0 was leaving the menu looking empty). */
