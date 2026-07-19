@@ -26,7 +26,7 @@ $cats = getBlogCategoriesWithCounts();
 $page = [
     'title'       => $search ? ('Search: ' . $q) : 'Legal Insights & Resources',
     'description' => 'California personal injury law insights, tips, and resources from the attorneys at '
-                   . 'Golden State Injury Lawyers. Informational only — not legal advice.',
+                   . 'Mason Law, P.C. Informational only — not legal advice.',
     'path'        => '/blog/',
     'styles'      => ['/assets/css/home.css', '/assets/css/blog.css'],
     'scripts'     => ['/assets/js/home.js', '/assets/js/blog.js'],

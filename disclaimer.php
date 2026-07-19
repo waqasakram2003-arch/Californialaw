@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $page = [
     'title'       => 'Legal Disclaimer',
-    'description' => 'Legal disclaimer for Golden State Injury Lawyers. Attorney Advertising. '
+    'description' => 'Legal disclaimer for Mason Law, P.C. Attorney Advertising. '
                    . 'Past results do not guarantee future outcomes. California only.',
     'path'        => '/disclaimer.php',
     'styles'      => ['/assets/css/home.css'],

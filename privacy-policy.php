@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $page = [
     'title'       => 'Privacy Policy',
-    'description' => 'Privacy Policy for Golden State Injury Lawyers, including California '
+    'description' => 'Privacy Policy for Mason Law, P.C., including California '
                    . 'Consumer Privacy Act (CCPA) rights, the data we collect, and how to contact us.',
     'path'        => '/privacy-policy.php',
     'styles'      => ['/assets/css/home.css'],

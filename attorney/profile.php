@@ -34,7 +34,7 @@ $others       = getOtherAttorneys((int) $att['id']);
 
 $page = [
     'title'       => $att['name'] . ', ' . $att['title'],
-    'description' => 'Meet ' . $att['name'] . ', ' . $att['title'] . ' at Golden State Injury Lawyers — '
+    'description' => 'Meet ' . $att['name'] . ', ' . $att['title'] . ' at Mason Law, P.C. — '
                    . 'a California personal injury attorney. ' . strip_tags($att['bio']),
     'path'        => '/attorney/' . $att['slug'] . '/',
     'styles'      => ['/assets/css/home.css', '/assets/css/practice-area.css', '/assets/css/attorney.css'],

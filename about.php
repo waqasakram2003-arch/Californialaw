@@ -1,6 +1,6 @@
 <?php
 /**
- * about.php — About Golden State Injury Lawyers.
+ * about.php — About Mason Law, P.C.
  */
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/repo.php';
@@ -47,7 +47,7 @@ require __DIR__ . '/includes/header.php';
   </div>
   <div class="container about-hero__inner">
     <p class="eyebrow" data-hero-item>Our Story</p>
-    <h1 data-hero-item>About Golden State Injury Lawyers</h1>
+    <h1 data-hero-item>About Mason Law, P.C.</h1>
     <p class="lead" data-hero-item style="color:rgba(255,255,255,.82);max-width:62ch;margin-inline:auto;">
       We are a California personal injury firm built on one belief: injured Californians deserve a dedicated advocate who treats them like a person.
     </p>

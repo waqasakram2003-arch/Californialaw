@@ -12,7 +12,7 @@ http_response_code(500);
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Something Went Wrong (500) | Golden State Injury Lawyers</title>
+<title>Something Went Wrong (500) | Mason Law, P.C.</title>
 <script>try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
 <style>
   :root{--primary:#1B2A4A;--secondary:#C8A96E;--accent:#D4AF6A;--bg:#F8F9FC;--text:#2D3748;--muted:#64748B;--card:#FFFFFF;--border:#E2E8F0;}

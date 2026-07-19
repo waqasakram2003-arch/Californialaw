@@ -1,7 +1,7 @@
 <?php
 /**
  * functions.php — shared helpers: security, routing, formatting, SEO.
- * Golden State Injury Lawyers
+ * Mason Law, P.C.
  */
 
 declare(strict_types=1);

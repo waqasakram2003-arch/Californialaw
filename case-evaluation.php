@@ -28,7 +28,7 @@ $injuriesList = ['Broken bones / fractures','Head or brain injury','Neck or back
 
 $page = [
     'title'       => 'Free Case Evaluation',
-    'description' => 'Request a free, confidential case evaluation from Golden State Injury Lawyers. '
+    'description' => 'Request a free, confidential case evaluation from Mason Law, P.C. '
                    . 'No upfront fees. Tell us about your California injury claim.',
     'path'        => '/case-evaluation.php',
     'robots'      => 'noindex, follow',

@@ -9,4 +9,4 @@ Disallow: /database/
 Disallow: /assets/dist/
 
 # Sitemap
-Sitemap: https://www.example.com/sitemap.xml
+Sitemap: https://masonlawpersonalinjury.com/sitemap.xml

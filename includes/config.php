@@ -1,6 +1,6 @@
 <?php
 /**
- * config.php — Golden State Injury Lawyers
+ * config.php — Mason Law, P.C.
  * Central configuration. KEEP CREDENTIALS OUT OF VERSION CONTROL.
  *
  * SECURITY: On Hostinger, prefer moving this file one level ABOVE /public_html/
@@ -17,9 +17,12 @@ declare(strict_types=1);
 // ---------------------------------------------------------------------------
 // Environment is auto-detected by hostname: the Hostinger domain runs as
 // 'production', anything else (localhost / XAMPP) stays 'development'.
+// Any real hostname is production; only localhost / 127.x / empty is dev.
 $__gsil_host = $_SERVER['HTTP_HOST'] ?? '';
-$__gsil_prod = (stripos($__gsil_host, 'hostingersite.com') !== false)
-            || (stripos($__gsil_host, 'snow-elephant') !== false);
+$__gsil_prod = ($__gsil_host !== '')
+            && (stripos($__gsil_host, 'localhost') === false)
+            && (strpos($__gsil_host, '127.0.0.1') === false)
+            && (strpos($__gsil_host, '0.0.0.0') === false);
 define('APP_ENV', $__gsil_prod ? 'production' : 'development'); // 'development' | 'production'
 
 // ---------------------------------------------------------------------------
@@ -69,7 +72,7 @@ define('SITE_ADDRESS', '1024 Iron Point Road, Folsom, CA 95630'); // primary (Fo
 // Base URL — no trailing slash. Used for canonical + OG tags.
 // Auto-detect for local dev; hard-code on production for safety.
 if (APP_ENV === 'production') {
-    define('BASE_URL', 'https://snow-elephant-667552.hostingersite.com');
+    define('BASE_URL', 'https://masonlawpersonalinjury.com');
 } else {
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';

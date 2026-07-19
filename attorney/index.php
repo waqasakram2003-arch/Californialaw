@@ -38,7 +38,7 @@ function attorney_categories(array $details, array $catMap): array
 
 $page = [
     'title'       => 'Our Attorneys',
-    'description' => 'Meet the attorneys of Golden State Injury Lawyers — an experienced California personal '
+    'description' => 'Meet the attorneys of Mason Law, P.C. — an experienced California personal '
                    . 'injury team serving injured clients throughout the state.',
     'path'        => '/attorney/',
     'styles'      => ['/assets/css/home.css', '/assets/css/practice-area.css', '/assets/css/attorney.css'],

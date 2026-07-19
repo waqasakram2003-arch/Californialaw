@@ -9,7 +9,7 @@ $caseTypes = getPracticeAreas();
 
 $page = [
     'title'       => 'Contact Us',
-    'description' => 'Contact Golden State Injury Lawyers for a free, confidential consultation about your '
+    'description' => 'Contact Mason Law, P.C. for a free, confidential consultation about your '
                    . 'California personal injury claim. Available 24/7.',
     'path'        => '/contact.php',
     'styles'      => ['/assets/css/home.css', '/assets/css/forms.css'],

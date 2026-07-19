@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 $page = [
     'title'       => 'Terms of Use',
-    'description' => 'Terms of Use governing your access to and use of the Golden State Injury '
+    'description' => 'Terms of Use governing your access to and use of the Mason Law, P.C. '
                    . 'Lawyers website, a California personal injury law firm.',
     'path'        => '/terms.php',
     'styles'      => ['/assets/css/home.css'],
