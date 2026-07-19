@@ -67,7 +67,7 @@ $navAreas = getPracticeAreas();
   <meta property="og:title" content="<?= e($seo['title_full']) ?>">
   <meta property="og:description" content="<?= e($seo['description']) ?>">
   <meta property="og:url" content="<?= e(canonical($seo)) ?>">
-  <meta property="og:image" content="<?= e(url($seo['og_image'])) ?>">
+  <meta property="og:image" content="<?= e(url($seo['og_image']) . '?v=mason2') ?>">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -76,7 +76,7 @@ $navAreas = getPracticeAreas();
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<?= e($seo['title_full']) ?>">
   <meta name="twitter:description" content="<?= e($seo['description']) ?>">
-  <meta name="twitter:image" content="<?= e(url($seo['og_image'])) ?>">
+  <meta name="twitter:image" content="<?= e(url($seo['og_image']) . '?v=mason2') ?>">
 
   <!-- Favicon / PWA -->
   <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
