@@ -168,6 +168,66 @@ function searchBlogPosts(string $q, int $limit = 8): array
 
 /* ---- presentation helpers ---- */
 
+/**
+ * Process post body HTML once: (1) inject id="" on every H2/H3 and collect a
+ * Table of Contents; (2) make external links open in a new tab with
+ * rel="noopener" (NEVER nofollow — internal + external links stay followed).
+ * Returns ['html' => processed, 'toc' => [['level'=>2|3,'id'=>,'text'=>], ...]].
+ * SEO items 7 (TOC) + 10 (in-body links).
+ */
+function blog_process_content(string $html): array
+{
+    $toc = [];
+    if (trim($html) === '') { return ['html' => $html, 'toc' => $toc]; }
+    if (!class_exists('DOMDocument')) { return ['html' => $html, 'toc' => $toc]; }
+
+    $host = parse_url(BASE_URL, PHP_URL_HOST) ?: '';
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument();
+    $doc->loadHTML('<?xml encoding="utf-8"?><div id="__wrap">' . $html . '</div>',
+        LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    libxml_clear_errors();
+    foreach (iterator_to_array($doc->childNodes) as $node) {
+        if ($node->nodeType === XML_PI_NODE) { $doc->removeChild($node); }
+    }
+    $xp   = new DOMXPath($doc);
+    $wrap = $xp->query('//div[@id="__wrap"]')->item(0);
+    if (!$wrap) { return ['html' => $html, 'toc' => $toc]; }
+
+    // Headings → ids + TOC
+    $used = [];
+    foreach ($xp->query('.//h2 | .//h3', $wrap) as $h) {
+        $text = trim($h->textContent);
+        if ($text === '') { continue; }
+        $id = $h->getAttribute('id');
+        if ($id === '') {
+            $base = generateSlug($text); $id = $base; $n = 2;
+            while (isset($used[$id])) { $id = $base . '-' . $n; $n++; }
+            $h->setAttribute('id', $id);
+        }
+        $used[$id] = true;
+        $toc[] = ['level' => strtolower($h->nodeName) === 'h3' ? 3 : 2, 'id' => $id, 'text' => $text];
+    }
+
+    // External links → target/rel (no nofollow)
+    foreach ($xp->query('.//a[@href]', $wrap) as $a) {
+        $href = $a->getAttribute('href');
+        if (!preg_match('#^https?://#i', $href)) { continue; }
+        $lhost = parse_url($href, PHP_URL_HOST) ?: '';
+        if ($lhost === '' || ($host !== '' && stripos($lhost, $host) !== false)) { continue; } // internal
+        $a->setAttribute('target', '_blank');
+        $rel = array_filter(array_unique(array_merge(
+            preg_split('/\s+/', trim($a->getAttribute('rel'))) ?: [],
+            ['noopener']
+        )));
+        $a->setAttribute('rel', implode(' ', $rel));
+    }
+
+    $out = '';
+    foreach ($wrap->childNodes as $c) { $out .= $doc->saveHTML($c); }
+    return ['html' => $out, 'toc' => $toc];
+}
+
 /** Estimated read time in minutes from HTML content. */
 function blog_read_time(string $content): int
 {

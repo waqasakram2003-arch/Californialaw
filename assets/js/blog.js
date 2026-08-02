@@ -97,3 +97,9 @@
   window.addEventListener('resize', onScroll, { passive: true });
   update();
 })();
+
+/* TOC: collapsed by default on mobile (SEO item 7) */
+(function () {
+  var toc = document.querySelector('[data-toc]');
+  if (toc && window.matchMedia('(max-width: 768px)').matches) { toc.removeAttribute('open'); }
+})();

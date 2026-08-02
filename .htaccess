@@ -24,8 +24,11 @@ ErrorDocument 500 /500.php
   # Dynamic XML sitemap.
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
+  # City landing pages: /personal-injury-lawyer-<city>-ca/ → service-areas/location.php
+  RewriteRule ^personal-injury-lawyer-([a-z0-9-]+)-ca/?$ service-areas/location.php?city=$1 [L,QSA]
+
   # (Clean URLs for /practice-areas/ and /blog/ are handled by the .htaccess
-  #  files inside those folders.)
+  #  files inside those folders. /service-areas/ uses DirectoryIndex.)
 </IfModule>
 
 # ---- Security headers ------------------------------------------------------

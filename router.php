@@ -38,6 +38,13 @@ if (preg_match('#^/attorney/([a-z0-9][a-z0-9-]*)/?$#', (string) $uri, $m)) {
     }
 }
 
+// City landing page → service-areas/location.php?city=<slug>
+if (preg_match('#^/personal-injury-lawyer-([a-z0-9-]+)-ca/?$#', (string) $uri, $m)) {
+    $_GET['city'] = $_REQUEST['city'] = $m[1];
+    require $docroot . '/service-areas/location.php';
+    return true;
+}
+
 // Blog category → blog/category.php?slug=<slug>
 if (preg_match('#^/blog/category/([a-z0-9][a-z0-9-]*)/?$#', (string) $uri, $m)) {
     $_GET['slug'] = $_REQUEST['slug'] = $m[1];

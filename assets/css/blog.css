@@ -219,3 +219,24 @@ html[data-theme="dark"] .post-faq__item summary { color: var(--color-text); }
 .post-faq__a { padding: 0 var(--space-5) var(--space-5); color: var(--color-text-muted); line-height: 1.7; }
 .post-faq__item summary:hover { background: rgba(var(--color-accent-rgb), 0.05); }
 @media (prefers-reduced-motion: reduce) { .post-faq__chev { transition: none; } }
+
+/* ===========================================================================
+   TABLE OF CONTENTS (server-rendered, native <details>) — SEO item 7
+   =========================================================================== */
+.post-toc {
+  max-width: 70ch; margin: 0 auto var(--space-6);
+  background: var(--color-bg-section, var(--color-bg)); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: var(--space-4) var(--space-5);
+}
+.post-toc summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-heading); font-weight: var(--weight-semibold); color: var(--color-heading); }
+.post-toc summary::-webkit-details-marker { display: none; }
+html[data-theme="dark"] .post-toc summary { color: var(--color-text); }
+.post-toc__chev { flex: none; width: 18px; height: 18px; color: var(--color-accent); transition: transform var(--transition-base); }
+.post-toc[open] .post-toc__chev { transform: rotate(180deg); }
+.post-toc__list { margin: var(--space-4) 0 0; padding-left: 1.2rem; }
+.post-toc__item { margin: 6px 0; }
+.post-toc__item a { color: var(--color-text-muted); text-decoration: none; border-bottom: 1px solid transparent; }
+.post-toc__item a:hover { color: var(--color-accent); border-bottom-color: currentColor; }
+.post-toc__item--l3 { margin-left: 1rem; font-size: var(--text-sm); list-style: circle; }
+@media (prefers-reduced-motion: reduce) { .post-toc__chev { transition: none; } }

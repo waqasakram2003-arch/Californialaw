@@ -27,6 +27,12 @@ $add('/about.php', 'monthly', '0.7');
 $add('/practice-areas/', 'monthly', '0.9');
 $add('/attorney/', 'monthly', '0.7');
 $add('/reviews.php', 'monthly', '0.8');
+$add('/results.php', 'monthly', '0.8');
+$add('/service-areas/', 'monthly', '0.7');
+require_once __DIR__ . '/includes/service-areas.php';
+foreach (array_keys(service_areas()) as $citySlug) {
+    $add('/personal-injury-lawyer-' . $citySlug . '-ca/', 'monthly', '0.8');
+}
 $add('/blog/', 'daily', '0.8');
 $add('/faq.php', 'monthly', '0.6');
 $add('/resources.php', 'monthly', '0.5');

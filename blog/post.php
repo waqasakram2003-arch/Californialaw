@@ -34,6 +34,9 @@ $url      = blog_post_url($post['slug']);
 $author   = !empty($post['author_slug']) ? getAttorneyBySlug($post['author_slug']) : null;
 $related  = getRelatedBlogPosts($post['category_id'] ? (int) $post['category_id'] : null, (int) $post['id'], 6);
 $faqs     = parse_faqs($post['faqs'] ?? '');
+$proc     = blog_process_content($post['content'] ?? '');
+$wordCount = str_word_count(strip_tags($post['content'] ?? ''));
+$showToc  = $wordCount >= 1500 && count($proc['toc']) >= 3;
 
 $crumbs = [
     ['name' => 'Home', 'path' => '/'],
@@ -112,13 +115,25 @@ require __DIR__ . '/../includes/header.php';
 
   <!-- 2. FEATURED IMAGE -->
   <div class="post-featured" data-cat="<?= e(blog_cat_key($post['cat_slug'])) ?>" aria-hidden="true">
-    <?php if (!empty($post['featured_image'])): ?><img src="<?= e(asset_url($post['featured_image'])) ?>" alt="" loading="lazy"><?php endif; ?>
+    <?php if (!empty($post['featured_image'])): ?><img src="<?= e(asset_url($post['featured_image'])) ?>" alt="" width="1280" height="720" loading="eager" fetchpriority="high" decoding="async"><?php endif; ?>
   </div>
 
   <!-- 3. CONTENT -->
   <div class="container container--narrow">
     <div class="post-content">
-      <?= $post['content'] ?: ('<p>' . e($post['excerpt'] ?? '') . '</p>') ?>
+      <?php if ($showToc): ?>
+        <details class="post-toc" open data-toc>
+          <summary><span>In this article</span><svg class="post-toc__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <nav aria-label="Table of contents">
+            <ol class="post-toc__list">
+              <?php foreach ($proc['toc'] as $t): ?>
+                <li class="post-toc__item post-toc__item--l<?= (int) $t['level'] ?>"><a href="#<?= e($t['id']) ?>"><?= e($t['text']) ?></a></li>
+              <?php endforeach; ?>
+            </ol>
+          </nav>
+        </details>
+      <?php endif; ?>
+      <?= $proc['html'] ?: ('<p>' . e($post['excerpt'] ?? '') . '</p>') ?>
 
       <!-- 4. DISCLAIMER -->
       <div class="post-disclaimer">
