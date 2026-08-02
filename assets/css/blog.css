@@ -195,3 +195,27 @@ html[data-theme="dark"] .glossary__item dt { color: var(--color-text); }
   transition: width 0.1s linear;
 }
 @media (prefers-reduced-motion: reduce) { .reading-progress__fill { transition: none; } }
+
+/* ===========================================================================
+   POST FAQ (native <details> accordion; feeds FAQPage schema) — SEO item 8
+   =========================================================================== */
+.post-hero__updated { color: var(--color-text-muted); }
+.post-faq { max-width: 70ch; margin: var(--space-8) auto 0; }
+.post-faq > h2 { margin-bottom: var(--space-5); }
+.post-faq__item {
+  border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-bg-card); margin-bottom: var(--space-3); overflow: hidden;
+}
+.post-faq__item summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-4); padding: var(--space-4) var(--space-5);
+  font-family: var(--font-heading); font-weight: var(--weight-semibold); font-size: var(--text-md);
+  color: var(--color-heading);
+}
+.post-faq__item summary::-webkit-details-marker { display: none; }
+html[data-theme="dark"] .post-faq__item summary { color: var(--color-text); }
+.post-faq__chev { flex: none; width: 20px; height: 20px; color: var(--color-accent); transition: transform var(--transition-base); }
+.post-faq__item[open] .post-faq__chev { transform: rotate(180deg); }
+.post-faq__a { padding: 0 var(--space-5) var(--space-5); color: var(--color-text-muted); line-height: 1.7; }
+.post-faq__item summary:hover { background: rgba(var(--color-accent-rgb), 0.05); }
+@media (prefers-reduced-motion: reduce) { .post-faq__chev { transition: none; } }

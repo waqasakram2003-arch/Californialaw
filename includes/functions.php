@@ -193,13 +193,14 @@ function paginate(int $totalItems, int $page = 1, int $perPage = 10): array
 function seo_defaults(array $page): array
 {
     $title = $page['title'] ?? 'Personal Injury Attorney';
-    $titleFull = $title . ' | ' . SITE_NAME . ' | California Personal Injury Attorney';
+    // Shorter, non-repetitive pattern: "[Page] | Mason Law, P.C." (avoids truncation).
+    $titleFull = $title . ' | ' . SITE_NAME;
     return array_merge([
         'description' => 'California personal injury attorneys serving injured Californians. '
                        . 'Free, confidential case evaluation. Past results do not guarantee future outcomes.',
         'path'        => $_SERVER['REQUEST_URI'] ?? '/',
         'og_image'    => '/assets/images/og-default.jpg',
-        'robots'      => 'index, follow',
+        'robots'      => 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
         'breadcrumbs' => [],
     ], $page, ['title_full' => $titleFull]);
 }
@@ -213,9 +214,16 @@ function url(string $path = '/'): string
     return rtrim(BASE_URL, '/') . '/' . ltrim($path, '/');
 }
 
-/** Canonical URL for the current/declared path (query string stripped). */
+/**
+ * Canonical URL. An explicit $page['canonical'] wins (used by paginated pages
+ * that must self-reference, e.g. /blog/?page=2). Otherwise the query string is
+ * stripped from the path.
+ */
 function canonical(array $page): string
 {
+    if (!empty($page['canonical'])) {
+        return preg_match('#^https?://#i', $page['canonical']) ? $page['canonical'] : url($page['canonical']);
+    }
     $path = $page['path'] ?? ($_SERVER['REQUEST_URI'] ?? '/');
     $path = strtok($path, '?');
     return url($path);

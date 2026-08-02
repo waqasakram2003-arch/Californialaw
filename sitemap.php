@@ -47,7 +47,7 @@ try {
     foreach ($pdo->query("SELECT slug FROM blog_categories ORDER BY name") as $r) {
         $add('/blog/category/' . $r['slug'] . '/', 'weekly', '0.5');
     }
-    foreach ($pdo->query("SELECT slug, COALESCE(updated_at, published_at) AS lm FROM blog_posts WHERE status='published' AND published_at <= NOW() ORDER BY published_at DESC") as $r) {
+    foreach ($pdo->query("SELECT slug, COALESCE(date_modified, updated_at, published_at) AS lm FROM blog_posts WHERE status='published' AND published_at <= NOW() ORDER BY published_at DESC") as $r) {
         $add('/blog/' . $r['slug'] . '/', 'monthly', '0.7', $r['lm']);
     }
 } catch (Throwable $e) { /* output what we have */ }

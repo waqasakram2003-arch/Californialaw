@@ -32,23 +32,28 @@ if (!$preview) { bumpPostViews((int) $post['id']); }
 $readTime = blog_read_time($post['content'] ?? '');
 $url      = blog_post_url($post['slug']);
 $author   = !empty($post['author_slug']) ? getAttorneyBySlug($post['author_slug']) : null;
-$related  = getRelatedBlogPosts($post['category_id'] ? (int) $post['category_id'] : null, (int) $post['id'], 3);
+$related  = getRelatedBlogPosts($post['category_id'] ? (int) $post['category_id'] : null, (int) $post['id'], 6);
+$faqs     = parse_faqs($post['faqs'] ?? '');
+
+$crumbs = [
+    ['name' => 'Home', 'path' => '/'],
+    ['name' => 'Blog', 'path' => '/blog/'],
+    ['name' => $post['cat_name'] ?? 'Article', 'path' => $post['cat_slug'] ? blog_category_url($post['cat_slug']) : '/blog/'],
+    ['name' => $post['title'], 'path' => $url],
+];
 
 $page = [
-    'title'       => $post['meta_title'] ?: $post['title'],
-    'description' => $post['meta_desc'] ?: mb_substr(strip_tags($post['excerpt'] ?? ''), 0, 160),
-    'path'        => $url,
-    'og_image'    => $post['featured_image'] ?: '/assets/images/og-default.jpg',
-    'og_type'     => 'article',
-    'styles'      => ['/assets/css/home.css', '/assets/css/blog.css'],
-    'scripts'     => ['/assets/js/blog.js'],
-    'schema'      => [schemaArticle($post)],
-    'breadcrumbs' => [
-        ['name' => 'Home', 'path' => '/'],
-        ['name' => 'Blog', 'path' => '/blog/'],
-        ['name' => $post['cat_name'] ?? 'Article', 'path' => $post['cat_slug'] ? blog_category_url($post['cat_slug']) : '/blog/'],
-        ['name' => $post['title'], 'path' => $url],
-    ],
+    'title'        => $post['meta_title'] ?: $post['title'],
+    'description'  => $post['meta_desc'] ?: mb_substr(strip_tags($post['excerpt'] ?? ''), 0, 160),
+    'path'         => $url,
+    'og_image'     => ($post['og_image'] ?? '') ?: ($post['featured_image'] ?: '/assets/images/og-default.jpg'),
+    'og_image_alt' => ($post['og_image_alt'] ?? '') ?: ($post['title'] . ' — ' . cfg('firm_name', SITE_NAME)),
+    'og_type'      => 'article',
+    'styles'       => ['/assets/css/home.css', '/assets/css/blog.css'],
+    'scripts'      => ['/assets/js/blog.js'],
+    // Single @graph (BlogPosting + author/reviewer + BreadcrumbList + FAQPage).
+    'schema'       => [schemaBlogGraph($post, $author, $faqs, $crumbs)],
+    'breadcrumbs'  => [],  // BreadcrumbList lives in the @graph above — avoid a duplicate block
 ];
 
 require __DIR__ . '/../includes/header.php';
@@ -74,7 +79,11 @@ require __DIR__ . '/../includes/header.php';
       <div class="post-hero__meta">
         <span class="blog-card__author"><span class="avatar"><?= e(initials($post['author_name'] ?? 'GS')) ?></span><?= e($post['author_name'] ?? SITE_NAME) ?></span>
         <span aria-hidden="true">&middot;</span>
-        <time datetime="<?= e(formatDate($post['published_at'], 'Y-m-d')) ?>"><?= e(formatDate($post['published_at'], 'F j, Y')) ?></time>
+        <time datetime="<?= e(formatDate($post['published_at'], 'Y-m-d')) ?>">Published <?= e(formatDate($post['published_at'], 'F j, Y')) ?></time>
+        <?php if (!empty($post['date_modified'])): ?>
+          <span aria-hidden="true">&middot;</span>
+          <span class="post-hero__updated">Last Updated <time datetime="<?= e(formatDate($post['date_modified'], 'Y-m-d')) ?>"><?= e(formatDate($post['date_modified'], 'F j, Y')) ?></time></span>
+        <?php endif; ?>
         <span aria-hidden="true">&middot;</span>
         <span><?= $readTime ?> min read</span>
       </div>
@@ -117,6 +126,19 @@ require __DIR__ . '/../includes/header.php';
         Laws may change. Consult a qualified California attorney for advice on your specific situation.
       </div>
     </div>
+
+    <!-- 4b. FAQ (feeds FAQPage schema in the @graph) -->
+    <?php if ($faqs): ?>
+      <section class="post-faq" aria-labelledby="post-faq-h">
+        <h2 id="post-faq-h" class="has-underline">Frequently Asked Questions</h2>
+        <?php foreach ($faqs as $f): ?>
+          <details class="post-faq__item">
+            <summary><?= e($f['question']) ?><svg class="post-faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <div class="post-faq__a"><?= nl2br(e($f['answer'])) ?></div>
+          </details>
+        <?php endforeach; ?>
+      </section>
+    <?php endif; ?>
 
     <!-- 5. AUTHOR BIO -->
     <?php if ($author): ?>

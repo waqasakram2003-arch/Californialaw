@@ -28,6 +28,9 @@ $page = [
     'description' => 'California personal injury law insights, tips, and resources from the attorneys at '
                    . 'Mason Law, P.C. Informational only — not legal advice.',
     'path'        => '/blog/',
+    // Self-referencing canonical on every paginated page (page 2 -> ?page=2).
+    'canonical'   => url('/blog/') . (($pageNum > 1 && !$search) ? '?page=' . $pageNum : ''),
+    'robots'      => $search ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
     'styles'      => ['/assets/css/home.css', '/assets/css/blog.css'],
     'scripts'     => ['/assets/js/home.js', '/assets/js/blog.js'],
     'breadcrumbs' => [

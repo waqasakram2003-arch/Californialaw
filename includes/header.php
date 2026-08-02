@@ -71,7 +71,7 @@ $navAreas = getPracticeAreas();
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="<?= e(SITE_NAME) ?> — California Personal Injury Attorneys">
+  <meta property="og:image:alt" content="<?= e($seo['og_image_alt'] ?? (SITE_NAME . ' — California Personal Injury Attorneys')) ?>">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<?= e($seo['title_full']) ?>">

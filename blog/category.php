@@ -28,6 +28,8 @@ $page = [
     'title'       => $category['name'] . ' Articles',
     'description' => $category['description'] ?: ('California injury law articles in ' . $category['name'] . '.'),
     'path'        => blog_category_url($slug),
+    // Self-referencing canonical on paginated category pages.
+    'canonical'   => url(blog_category_url($slug)) . ($pageNum > 1 ? '?page=' . $pageNum : ''),
     'styles'      => ['/assets/css/home.css', '/assets/css/blog.css'],
     'scripts'     => ['/assets/js/home.js', '/assets/js/blog.js'],
     'breadcrumbs' => [

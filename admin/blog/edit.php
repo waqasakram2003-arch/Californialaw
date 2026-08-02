@@ -14,6 +14,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $catId = ($_POST['category_id'] ?? '') !== '' ? (int) $_POST['category_id'] : null;
     $mt = trim((string) ($_POST['meta_title'] ?? ''));
     $md = trim((string) ($_POST['meta_desc'] ?? ''));
+    // SEO additions
+    $dateMod = trim((string) ($_POST['date_modified'] ?? ''));
+    $dateMod = $dateMod !== '' ? date('Y-m-d', strtotime($dateMod)) : null;
+    $ogImage = trim((string) ($_POST['og_image'] ?? '')) ?: null;
+    $ogAlt   = trim((string) ($_POST['og_image_alt'] ?? '')) ?: null;
+    $faqsRaw = trim((string) ($_POST['faqs'] ?? '')) ?: null;  // "Question :: Answer" per line
     $action = $_POST['action'] ?? 'draft';
     $status = $action === 'publish' ? 'published' : 'draft';
     $pubInput = trim((string) ($_POST['published_at'] ?? ''));
@@ -38,17 +44,17 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     if ($title === '') { admin_flash('error', 'Title is required.'); admin_redirect('/admin/blog/edit.php' . ($pid ? '?id=' . $pid : '')); }
 
     if ($pid) {
-        $pdo->prepare('UPDATE blog_posts SET title=?, slug=?, excerpt=?, content=?, featured_image=?, category_id=?, author_name=?, author_slug=?, status=?, published_at=?, meta_title=?, meta_desc=? WHERE id=?')
-            ->execute([$title, $slug, $excerpt, $content, $image, $catId, $authorName, $authorSlug, $status, $pubAt, $mt, $md, $pid]);
+        $pdo->prepare('UPDATE blog_posts SET title=?, slug=?, excerpt=?, content=?, featured_image=?, category_id=?, author_name=?, author_slug=?, status=?, published_at=?, meta_title=?, meta_desc=?, date_modified=?, og_image=?, og_image_alt=?, faqs=? WHERE id=?')
+            ->execute([$title, $slug, $excerpt, $content, $image, $catId, $authorName, $authorSlug, $status, $pubAt, $mt, $md, $dateMod, $ogImage, $ogAlt, $faqsRaw, $pid]);
     } else {
-        $pdo->prepare('INSERT INTO blog_posts (title, slug, excerpt, content, featured_image, category_id, author_name, author_slug, status, published_at, meta_title, meta_desc, views) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0)')
-            ->execute([$title, $slug, $excerpt, $content, $image, $catId, $authorName, $authorSlug, $status, $pubAt, $mt, $md]);
+        $pdo->prepare('INSERT INTO blog_posts (title, slug, excerpt, content, featured_image, category_id, author_name, author_slug, status, published_at, meta_title, meta_desc, date_modified, og_image, og_image_alt, faqs, views) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0)')
+            ->execute([$title, $slug, $excerpt, $content, $image, $catId, $authorName, $authorSlug, $status, $pubAt, $mt, $md, $dateMod, $ogImage, $ogAlt, $faqsRaw]);
     }
     admin_flash('success', 'Post saved (' . $status . ').');
     admin_redirect('/admin/blog/');
 }
 
-$row = ['title'=>'','slug'=>'','excerpt'=>'','content'=>'','featured_image'=>'','category_id'=>null,'author_slug'=>'','status'=>'draft','published_at'=>'','meta_title'=>'','meta_desc'=>''];
+$row = ['title'=>'','slug'=>'','excerpt'=>'','content'=>'','featured_image'=>'','category_id'=>null,'author_slug'=>'','status'=>'draft','published_at'=>'','meta_title'=>'','meta_desc'=>'','date_modified'=>'','og_image'=>'','og_image_alt'=>'','faqs'=>''];
 if ($id) { $st = $pdo->prepare('SELECT * FROM blog_posts WHERE id=?'); $st->execute([$id]); $row = $st->fetch() ?: $row; }
 $cats = $pdo->query("SELECT id, name FROM blog_categories ORDER BY name")->fetchAll();
 $attorneys = $pdo->query("SELECT slug, name FROM attorneys ORDER BY order_num, id")->fetchAll();
@@ -94,7 +100,21 @@ require __DIR__ . '/../includes/admin-head.php';
     <div class="adm-field"><label for="md">Meta description</label><input class="adm-input" type="text" id="md" name="meta_desc" maxlength="170" value="<?= e($row['meta_desc'] ?? '') ?>" data-charcount="#mdc"><span class="hint"><span id="mdc"></span> / 170</span></div>
   </div>
 
-  <div class="adm-field" style="max-width:320px"><label for="pub">Publish date (future = scheduled)</label><input class="adm-input" type="datetime-local" id="pub" name="published_at" value="<?= e($pubVal) ?>"></div>
+  <div class="adm-row">
+    <div class="adm-field" style="max-width:320px"><label for="pub">Publish date (future = scheduled)</label><input class="adm-input" type="datetime-local" id="pub" name="published_at" value="<?= e($pubVal) ?>"></div>
+    <div class="adm-field" style="max-width:320px"><label for="dm">Last updated date (SEO)</label><input class="adm-input" type="date" id="dm" name="date_modified" value="<?= e($row['date_modified'] ? date('Y-m-d', strtotime((string) $row['date_modified'])) : '') ?>"><span class="hint">Shown as &ldquo;Last Updated&rdquo; + schema dateModified. Leave blank to use publish date.</span></div>
+  </div>
+
+  <div class="adm-row">
+    <div class="adm-field"><label for="ogi">Social share image (og:image)</label><input class="adm-input" type="text" id="ogi" name="og_image" value="<?= e($row['og_image'] ?? '') ?>" placeholder="/assets/images/generated/…webp"><span class="hint">Leave blank to use the featured image.</span></div>
+    <div class="adm-field"><label for="oga">Social image alt text</label><input class="adm-input" type="text" id="oga" name="og_image_alt" maxlength="150" value="<?= e($row['og_image_alt'] ?? '') ?>"><span class="hint">Describes the share image for accessibility + SEO.</span></div>
+  </div>
+
+  <div class="adm-field">
+    <label for="faqs">FAQs (one per line, format: <code>Question :: Answer</code>)</label>
+    <textarea class="adm-textarea" id="faqs" name="faqs" rows="6" placeholder="How long do I have to file a claim in California? :: In most injury cases the deadline is two years from the date of injury (CCP 335.1)."><?= e($row['faqs'] ?? '') ?></textarea>
+    <span class="hint">Renders an accordion at the bottom of the article + powers FAQPage rich results. 6&ndash;10 pairs recommended.</span>
+  </div>
 
   <div class="form-actions">
     <button class="btn btn-ghost" type="submit" onclick="document.getElementById('action').value='draft'">Save as Draft</button>
