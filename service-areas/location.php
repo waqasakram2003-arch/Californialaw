@@ -23,7 +23,7 @@ if (!$area) {
 
 $city   = $area['name'];
 $path   = '/personal-injury-lawyer-' . $citySlug . '-ca/';
-$faqs   = service_area_faqs($city);
+$faqs   = service_area_faqs($city, $area['faqs_local'] ?? []);
 $pas    = getPracticeAreas();
 
 // LegalService node scoped to this city + BreadcrumbList + FAQPage, in one @graph.
@@ -92,16 +92,30 @@ require __DIR__ . '/../includes/header.php';
   <div class="container container--narrow">
     <div class="post-content">
       <?php foreach ($area['intro'] as $p): ?><p><?= e($p) ?></p><?php endforeach; ?>
+
+      <?php if (!empty($area['hotspots'])): ?>
+        <h2 class="has-underline">Common accident locations in <?= e($city) ?></h2>
+        <?php if (!empty($area['roads_intro'])): ?><p><?= e($area['roads_intro']) ?></p><?php endif; ?>
+        <ul>
+          <?php foreach ($area['hotspots'] as $spot): ?><li><?= e($spot) ?></li><?php endforeach; ?>
+        </ul>
+        <?php if (!empty($area['local'])): ?><p><?= e($area['local']) ?></p><?php endif; ?>
+      <?php endif; ?>
+
       <h2 class="has-underline">Neighborhoods we serve in <?= e($city) ?></h2>
       <p>We help injured people throughout <?= e($city) ?>, including <?= e($area['neighborhoods']) ?>.</p>
 
       <h2 class="has-underline">How we help injured people in <?= e($city) ?></h2>
+      <p>Whatever the cause of your injury, our team can help you understand your options and pursue fair compensation. We handle:</p>
       <ul>
         <?php foreach (array_slice($pas, 0, 8) as $pa): ?>
           <li><a href="/practice-areas/<?= e($pa['slug']) ?>/"><?= e($pa['title']) ?></a></li>
         <?php endforeach; ?>
       </ul>
       <p><a href="/practice-areas/">View all practice areas &rarr;</a></p>
+
+      <h2 class="has-underline">Why injured <?= e($city) ?> residents choose Mason Law</h2>
+      <p>Founder Shannon Ramos is a California trial attorney known for preparation and persistence. We keep our caseload manageable so every client gets real attention, we communicate in plain English, and we advance the costs of building your case. You pay nothing up front, and no attorney fee unless we recover for you.</p>
 
       <div class="post-disclaimer">
         <strong>Disclaimer:</strong> This page is attorney advertising and is for general information only. It is not legal advice, and it does not create an attorney-client relationship. Past results do not guarantee future outcomes.
