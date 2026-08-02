@@ -38,6 +38,12 @@ if (preg_match('#^/attorney/([a-z0-9][a-z0-9-]*)/?$#', (string) $uri, $m)) {
     }
 }
 
+// Verdicts & Settlements clean URL → verdicts.php
+if (preg_match('#^/verdicts-and-settlements/?$#', (string) $uri)) {
+    require $docroot . '/verdicts.php';
+    return true;
+}
+
 // City landing page → service-areas/location.php?city=<slug>
 if (preg_match('#^/personal-injury-lawyer-([a-z0-9-]+)-ca/?$#', (string) $uri, $m)) {
     $_GET['city'] = $_REQUEST['city'] = $m[1];

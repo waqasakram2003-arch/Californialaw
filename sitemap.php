@@ -27,7 +27,7 @@ $add('/about.php', 'monthly', '0.7');
 $add('/practice-areas/', 'monthly', '0.9');
 $add('/attorney/', 'monthly', '0.7');
 $add('/reviews.php', 'monthly', '0.8');
-$add('/results.php', 'monthly', '0.8');
+$add('/verdicts-and-settlements/', 'monthly', '0.8');
 $add('/service-areas/', 'monthly', '0.7');
 require_once __DIR__ . '/includes/service-areas.php';
 foreach (array_keys(service_areas()) as $citySlug) {

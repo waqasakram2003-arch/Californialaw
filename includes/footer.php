@@ -55,7 +55,7 @@
         <h3>Quick Links</h3>
         <ul role="list">
           <li><a href="/about.php">About Us</a></li>
-          <li><a href="/results.php">Verdicts &amp; Settlements</a></li>
+          <li><a href="/verdicts-and-settlements/">Verdicts &amp; Settlements</a></li>
           <li><a href="/reviews.php">Client Reviews</a></li>
           <li><a href="/service-areas/">Service Areas</a></li>
           <li><a href="/blog/">Blog</a></li>

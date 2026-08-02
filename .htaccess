@@ -24,6 +24,9 @@ ErrorDocument 500 /500.php
   # Dynamic XML sitemap.
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
+  # Verdicts & Settlements clean URL.
+  RewriteRule ^verdicts-and-settlements/?$ verdicts.php [L,QSA]
+
   # City landing pages: /personal-injury-lawyer-<city>-ca/ → service-areas/location.php
   RewriteRule ^personal-injury-lawyer-([a-z0-9-]+)-ca/?$ service-areas/location.php?city=$1 [L,QSA]
 
