@@ -37,6 +37,7 @@ $titleS   = pa_singular($title); // singular form for headings
 $base     = '/practice-areas/' . $area['slug'] . '/';
 $results  = getCaseResultsForArea($d['result_match'] ?? $title);
 $related  = getRelatedAreas($d['related'] ?? []);
+$guides   = getGuidesForArea($area['slug'], 3);   // supporting blog guides (topic cluster)
 
 $page = [
     'title'       => $area['meta_title'] ?: ($title . ' Attorney California'),
@@ -238,6 +239,33 @@ require __DIR__ . '/../includes/header.php';
           <h3 class="pa-card__title"><?= e($rel['title']) ?></h3>
           <p class="pa-card__desc"><?= e($rel['short_desc']) ?></p>
           <span class="pa-card__more">Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<!-- ============ 9b. RELATED GUIDES (topic cluster: area -> supporting articles) ============ -->
+<?php if ($guides): ?>
+<section class="section section--muted">
+  <div class="container container--wide">
+    <div class="section-head section-head--center animate-on-scroll">
+      <p class="eyebrow">Free Legal Guides</p>
+      <h2 class="has-underline"><?= e($titleS) ?> Resources</h2>
+      <p>Plain-English answers to the questions we hear most about <?= e(strtolower($title)) ?> in California.</p>
+    </div>
+    <div class="grid grid--3 stagger-children">
+      <?php foreach ($guides as $g): ?>
+        <a class="pa-card" href="/blog/<?= e($g['slug']) ?>/">
+          <?php if (!empty($g['featured_image'])): ?>
+            <span class="pa-card__media"><img src="<?= e(asset_url($g['featured_image'])) ?>" alt="" loading="lazy" decoding="async"></span>
+          <?php endif; ?>
+          <h3 class="pa-card__title"><?= e($g['title']) ?></h3>
+          <p class="pa-card__desc"><?= e(mb_strimwidth(strip_tags((string) $g['excerpt']), 0, 120, '…')) ?></p>
+          <span class="pa-card__more">Read Guide
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </span>
         </a>

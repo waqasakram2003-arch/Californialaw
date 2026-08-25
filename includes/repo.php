@@ -195,3 +195,85 @@ function practice_icon(string $key): string
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" '
         . 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $inner . '</svg>';
 }
+
+/**
+ * Supporting blog guides for a practice area (SEO topic clusters).
+ * Curated slug lists keep the pairing genuinely relevant; falls back to the
+ * area's blog category so new posts surface automatically.
+ * Returns published posts only, newest first.
+ */
+function getGuidesForArea(string $areaSlug, int $limit = 3): array
+{
+    static $map = [
+        'car-accidents' => [
+            'what-to-do-after-a-car-accident-in-california',
+            'how-much-is-my-california-car-accident-case-worth',
+            'how-comparative-fault-works-in-california',
+            'california-30-60-15-insurance-minimums',
+            'dealing-with-insurance-adjusters-california',
+            'how-to-get-folsom-police-accident-report',
+        ],
+        'motorcycle-accidents' => [
+            'california-lane-splitting-laws',
+            'how-comparative-fault-works-in-california',
+            'how-much-is-my-california-car-accident-case-worth',
+        ],
+        'pedestrian-accidents' => [
+            'pedestrian-right-of-way-laws-california',
+            'e-bike-accident-liability-california',
+            'how-comparative-fault-works-in-california',
+        ],
+        'rideshare-accidents' => [
+            'uber-lyft-accidents-california-insurance',
+            'california-30-60-15-insurance-minimums',
+            'dealing-with-insurance-adjusters-california',
+        ],
+        'dog-bites' => [
+            'california-dog-bite-laws-strict-liability',
+            'damages-in-a-california-injury-claim',
+            'california-statute-of-limitations-injury-claims',
+        ],
+        'brain-injuries' => [
+            'understanding-traumatic-brain-injuries',
+            'damages-in-a-california-injury-claim',
+            'how-long-does-a-california-injury-case-take',
+        ],
+        'truck-accidents' => [
+            'how-much-is-my-california-car-accident-case-worth',
+            'dealing-with-insurance-adjusters-california',
+            'california-statute-of-limitations-injury-claims',
+        ],
+        'wrongful-death' => [
+            'california-statute-of-limitations-injury-claims',
+            'damages-in-a-california-injury-claim',
+            'how-long-does-a-california-injury-case-take',
+        ],
+        'slip-and-fall' => [
+            'damages-in-a-california-injury-claim',
+            'how-comparative-fault-works-in-california',
+            'california-statute-of-limitations-injury-claims',
+        ],
+        'workplace-injuries' => [
+            'damages-in-a-california-injury-claim',
+            'how-long-does-a-california-injury-case-take',
+            'california-statute-of-limitations-injury-claims',
+        ],
+    ];
+
+    $slugs = $map[$areaSlug] ?? [];
+    if (!$slugs) { return []; }
+
+    try {
+        $in  = implode(',', array_fill(0, count($slugs), '?'));
+        $sql = "SELECT title, slug, excerpt, featured_image, published_at
+                FROM blog_posts
+                WHERE slug IN ($in) AND status='published' AND published_at <= NOW()
+                ORDER BY FIELD(slug, $in)
+                LIMIT " . (int) $limit;
+        $stmt = db()->prepare($sql);
+        $stmt->execute(array_merge($slugs, $slugs));   // once for IN, once for FIELD ordering
+        return $stmt->fetchAll();
+    } catch (Throwable $e) {
+        return [];
+    }
+}
