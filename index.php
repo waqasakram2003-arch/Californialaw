@@ -10,8 +10,8 @@ require_once __DIR__ . '/includes/repo.php';
 
 $page = [
     'title'       => 'California Personal Injury Lawyers',
-    'description' => 'When you\'re injured in California, we fight back. No upfront fees — we only get '
-                   . 'paid when you win. Free, confidential case evaluation. Past results do not guarantee future outcomes.',
+    'description' => 'Injured in California? Our personal injury attorneys fight insurers for '
+                   . 'you. No upfront fees. Free, confidential case evaluation.',
     'path'        => '/',
     'styles'      => ['/assets/css/home.css'],
     'scripts'     => ['/assets/js/home.js'],

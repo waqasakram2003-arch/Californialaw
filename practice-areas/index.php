@@ -31,8 +31,8 @@ try {
 
 $page = [
     'title'       => 'Practice Areas',
-    'description' => 'Mason Law, P.C. handles all types of California personal injury cases — '
-                   . 'car and truck accidents, slip and fall, wrongful death, brain injuries, and more. Free case evaluation.',
+    'description' => 'California personal injury cases: car and truck accidents, slip and fall, '
+                   . 'wrongful death, brain injuries, and more. Free case evaluation.',
     'path'        => '/practice-areas/',
     'styles'      => ['/assets/css/home.css', '/assets/css/practice-area.css'],
     'scripts'     => ['/assets/js/home.js', '/assets/js/practice-area.js'],

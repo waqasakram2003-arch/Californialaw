@@ -337,3 +337,17 @@ function pa_card_image(array $area): string
     // shows without a hard refresh — same reason the blog images needed it.
     return function_exists('asset_url') ? asset_url($path) : $path;
 }
+
+/**
+ * Trim a meta description to a SERP-safe length on a word boundary.
+ * Google truncates around 155-160 chars; cutting mid-word wastes the snippet.
+ */
+function meta_trim(string $text, int $max = 155): string
+{
+    $text = trim(preg_replace('/\s+/', ' ', $text));
+    if (mb_strlen($text) <= $max) { return $text; }
+    $cut = mb_substr($text, 0, $max);
+    $sp  = mb_strrpos($cut, ' ');
+    if ($sp !== false && $sp > $max * 0.6) { $cut = mb_substr($cut, 0, $sp); }
+    return rtrim($cut, " ,;:.—-") . '…';
+}

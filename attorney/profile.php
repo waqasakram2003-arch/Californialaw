@@ -34,8 +34,12 @@ $others       = getOtherAttorneys((int) $att['id']);
 
 $page = [
     'title'       => $att['name'] . ', ' . $att['title'],
-    'description' => 'Meet ' . $att['name'] . ', ' . $att['title'] . ' at Mason Law, P.C. — '
-                   . 'a California personal injury attorney. ' . strip_tags($att['bio']),
+    // Appending the full bio pushed this to 218-325 chars and Google truncated it
+    // mid-sentence. Keep the identity up front, then add as much bio as fits in ~155.
+    'description' => meta_trim(
+        $att['name'] . ', ' . $att['title'] . ' at Mason Law, P.C. — California personal '
+        . 'injury attorney. ' . strip_tags($att['bio'])
+    ),
     'path'        => '/attorney/' . $att['slug'] . '/',
     'styles'      => ['/assets/css/home.css', '/assets/css/practice-area.css', '/assets/css/attorney.css'],
     'scripts'     => ['/assets/js/home.js', '/assets/js/practice-area.js', '/assets/js/attorney.js'],
