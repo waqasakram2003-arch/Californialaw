@@ -193,8 +193,13 @@ function paginate(int $totalItems, int $page = 1, int $perPage = 10): array
 function seo_defaults(array $page): array
 {
     $title = $page['title'] ?? 'Personal Injury Attorney';
-    // Shorter, non-repetitive pattern: "[Page] | Mason Law, P.C." (avoids truncation).
-    $titleFull = $title . ' | ' . SITE_NAME;
+    // Pattern: "[Page] | Mason Law, P.C." — but Google truncates around 60-65 chars, and
+    // the 18-char brand suffix pushed long pages over. Step the brand down (or drop it)
+    // so the page's own keywords survive in the SERP instead of being cut mid-phrase.
+    $titleFull = $title;
+    foreach ([' | ' . SITE_NAME, ' | Mason Law'] as $suffix) {
+        if (mb_strlen($title . $suffix) <= 65) { $titleFull = $title . $suffix; break; }
+    }
     return array_merge([
         'description' => 'California personal injury attorneys serving injured Californians. '
                        . 'Free, confidential case evaluation. Past results do not guarantee future outcomes.',
