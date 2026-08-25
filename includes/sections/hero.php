@@ -62,15 +62,15 @@
       <p class="hero__card-title">Results We&rsquo;ve Achieved</p>
       <ul class="hero__stats" role="list">
         <li>
-          <span class="hero__stat-num" data-counter data-prefix="$" data-target="50" data-suffix="M+">$0M+</span>
+          <span class="hero__stat-num" data-counter data-prefix="$" data-target="50" data-suffix="M+">$50M+</span>
           <span class="hero__stat-label">Recovered for Clients</span>
         </li>
         <li>
-          <span class="hero__stat-num" data-counter data-target="800" data-suffix="+">0+</span>
+          <span class="hero__stat-num" data-counter data-target="800" data-suffix="+">800+</span>
           <span class="hero__stat-label">Cases Handled</span>
         </li>
         <li>
-          <span class="hero__stat-num" data-counter data-target="25" data-suffix="+">0+</span>
+          <span class="hero__stat-num" data-counter data-target="25" data-suffix="+">25+</span>
           <span class="hero__stat-label">Years of Experience</span>
         </li>
       </ul>

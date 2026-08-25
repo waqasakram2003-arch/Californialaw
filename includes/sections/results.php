@@ -40,7 +40,7 @@ $stats = [
     <div class="results-stats stagger-children">
       <?php foreach ($stats as $s): ?>
         <div class="result-stat">
-          <span class="result-stat__num" data-counter data-prefix="<?= e($s['prefix']) ?>" data-target="<?= (int)$s['target'] ?>" data-suffix="<?= e($s['suffix']) ?>"><?= e($s['prefix']) ?>0<?= e($s['suffix']) ?></span>
+          <span class="result-stat__num" data-counter data-prefix="<?= e($s['prefix']) ?>" data-target="<?= (int)$s['target'] ?>" data-suffix="<?= e($s['suffix']) ?>"><?= e($s['prefix']) ?><?= (int)$s['target'] ?><?= e($s['suffix']) ?></span>
           <span class="result-stat__label"><?= e($s['label']) ?></span>
         </div>
       <?php endforeach; ?>
