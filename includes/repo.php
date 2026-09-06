@@ -206,6 +206,7 @@ function getGuidesForArea(string $areaSlug, int $limit = 3): array
 {
     static $map = [
         'car-accidents' => [
+            'folsom-car-accident-guide',
             'what-to-do-after-a-car-accident-in-california',
             'how-much-is-my-california-car-accident-case-worth',
             'how-comparative-fault-works-in-california',
