@@ -278,3 +278,40 @@ function getGuidesForArea(string $areaSlug, int $limit = 3): array
         return [];
     }
 }
+
+/**
+ * Supporting blog guides for a city landing page.
+ * Folsom has genuinely local guides (the pillar, the PD/CHP report guide); other
+ * service areas get the statewide guides that apply anywhere in California.
+ * Keeps city pages from being orphaned from the blog. Published posts only.
+ */
+function getGuidesForCity(string $citySlug, int $limit = 3): array
+{
+    static $map = [
+        'folsom' => [
+            'folsom-car-accident-guide',
+            'how-to-get-folsom-police-accident-report',
+            'e-bike-accident-liability-california',
+        ],
+    ];
+    static $default = [
+        'what-to-do-after-a-car-accident-in-california',
+        'how-much-is-my-california-car-accident-case-worth',
+        'california-statute-of-limitations-injury-claims',
+    ];
+
+    $slugs = $map[$citySlug] ?? $default;
+    try {
+        $in  = implode(',', array_fill(0, count($slugs), '?'));
+        $sql = "SELECT title, slug, excerpt, featured_image
+                FROM blog_posts
+                WHERE slug IN ($in) AND status='published' AND published_at <= NOW()
+                ORDER BY FIELD(slug, $in)
+                LIMIT " . (int) $limit;
+        $stmt = db()->prepare($sql);
+        $stmt->execute(array_merge($slugs, $slugs));
+        return $stmt->fetchAll();
+    } catch (Throwable $e) {
+        return [];
+    }
+}

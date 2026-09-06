@@ -11,6 +11,7 @@ require_once __DIR__ . '/../includes/service-areas.php';
 $citySlug = isset($_GET['city']) ? preg_replace('/[^a-z0-9-]/', '', strtolower((string) $_GET['city'])) : '';
 $areas    = service_areas();
 $area     = $areas[$citySlug] ?? null;
+$guides   = $area ? getGuidesForCity($citySlug, 3) : [];   // supporting blog guides (topic cluster)
 
 if (!$area) {
     http_response_code(404);
@@ -132,6 +133,26 @@ require __DIR__ . '/../includes/header.php';
           </details>
         <?php endforeach; ?>
       </section>
+    <?php endif; ?>
+
+    <?php if ($guides): ?>
+    <div class="sa-guides">
+      <h2 class="has-underline">Free legal guides for <?= e($city) ?></h2>
+      <div class="grid grid--3 stagger-children">
+        <?php foreach ($guides as $g): ?>
+          <a class="pa-card" href="/blog/<?= e($g['slug']) ?>/">
+            <?php if (!empty($g['featured_image'])): ?>
+              <span class="pa-card__media"><img src="<?= e(asset_url($g['featured_image'])) ?>" alt="" loading="lazy" decoding="async"></span>
+            <?php endif; ?>
+            <h3 class="pa-card__title"><?= e($g['title']) ?></h3>
+            <p class="pa-card__desc"><?= e(mb_strimwidth(strip_tags((string) $g['excerpt']), 0, 120, '…')) ?></p>
+            <span class="pa-card__more">Read Guide
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        <?php endforeach; ?>
+      </div>
+    </div>
     <?php endif; ?>
 
     <div class="post-cta">
