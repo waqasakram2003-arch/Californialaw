@@ -246,11 +246,13 @@ function getGuidesForArea(string $areaSlug, int $limit = 3): array
         ],
         'wrongful-death' => [
             'california-statute-of-limitations-injury-claims',
+            'personal-injury-lawyer-fees-california',
             'damages-in-a-california-injury-claim',
             'how-long-does-a-california-injury-case-take',
         ],
         'slip-and-fall' => [
             'damages-in-a-california-injury-claim',
+            'personal-injury-lawyer-fees-california',
             'how-comparative-fault-works-in-california',
             'california-statute-of-limitations-injury-claims',
         ],
