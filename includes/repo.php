@@ -207,6 +207,7 @@ function getGuidesForArea(string $areaSlug, int $limit = 3): array
     static $map = [
         'car-accidents' => [
             'folsom-car-accident-guide',
+            'who-pays-medical-bills-after-car-accident-california',
             'what-to-do-after-a-car-accident-in-california',
             'how-much-is-my-california-car-accident-case-worth',
             'how-comparative-fault-works-in-california',
@@ -236,6 +237,7 @@ function getGuidesForArea(string $areaSlug, int $limit = 3): array
         ],
         'brain-injuries' => [
             'understanding-traumatic-brain-injuries',
+            'who-pays-medical-bills-after-car-accident-california',
             'damages-in-a-california-injury-claim',
             'how-long-does-a-california-injury-case-take',
         ],
