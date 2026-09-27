@@ -34,7 +34,13 @@ $phone = e(cfg('site_phone', SITE_PHONE));
 <section class="legal-page section">
   <div class="container">
     <div class="legal-body">
-      <p class="legal-updated">Last updated: <?= e(date('F j, Y')) ?></p>
+      <?php
+        // Set this to the date the policy text actually changed. It was previously
+        // date('F j, Y'), which re-dated the policy to "today" on every page load and
+        // so could never tell a reader when the terms really changed.
+        $policyUpdated = '2026-09-27';
+      ?>
+      <p class="legal-updated">Last updated: <?= e(date('F j, Y', strtotime($policyUpdated))) ?></p>
 
       <div class="legal-callout">
         <strong>Template notice:</strong> This policy is provided as a starting template.
@@ -54,8 +60,8 @@ $phone = e(cfg('site_phone', SITE_PHONE));
           anonymized data such as pages visited, device type, and approximate region through
           tools like Google Analytics and the Meta Pixel.</li>
         <li><strong>Cookies:</strong> small files used to remember your theme preference and,
-          with your consent, to measure site traffic. You may decline non-essential cookies via
-          our banner at any time.</li>
+          with your consent, to measure site traffic and to measure the performance of our
+          advertising. You may decline non-essential cookies via our banner at any time.</li>
       </ul>
 
       <h2>How We Use Your Information</h2>
@@ -66,10 +72,39 @@ $phone = e(cfg('site_phone', SITE_PHONE));
         <li>To comply with legal and ethical obligations.</li>
       </ul>
 
+      <h2>Advertising Cookies &amp; Conversion Tracking</h2>
+      <p>We advertise our legal services online. To understand whether those advertisements are
+        working, this website uses Google&rsquo;s advertising and conversion-tracking technology
+        (the Google tag). When it is active, it may set or read cookies and similar identifiers in
+        order to measure actions such as submitting a contact form or requesting a case evaluation,
+        and to report those actions to us in aggregate.</p>
+      <p><strong>These advertising technologies load only after you select &ldquo;Accept&rdquo; on
+        our cookie banner.</strong> If you decline, or simply take no action, no advertising or
+        analytics scripts are loaded on your browser at all. You may withdraw your consent at any
+        time by clearing this site&rsquo;s cookies in your browser, after which the banner will
+        appear again and your new choice will apply.</p>
+      <p>We do not use these technologies to collect the substance of any inquiry you send us, and
+        we do not provide the details of your legal matter to advertising providers. Information
+        handled by Google in connection with these services is governed by
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google&rsquo;s
+        Privacy Policy</a> and its description of
+        <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">how
+        Google uses information from sites that use its services</a>. You can also manage the ads you
+        see through <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">Google My
+        Ad Center</a>.</p>
+
       <h2>We Do Not Sell Your Personal Information</h2>
-      <p>We do not sell or rent your personal information to third parties. We share information
-        only with service providers who help us operate the website (for example, hosting or
-        analytics), and only as needed to provide those services.</p>
+      <p>We do not sell or rent your personal information to third parties, and we have never
+        exchanged your information for money.</p>
+      <p>California law also regulates &ldquo;sharing&rdquo; personal information for
+        cross-context behavioral advertising, which is a separate concept from selling. Depending
+        on how the advertising cookies described above are configured, their use may be treated as
+        &ldquo;sharing&rdquo; under the CPRA. Because we load those technologies only after you
+        affirmatively accept cookies, you control whether this occurs: declining the banner, or
+        never accepting it, means no advertising identifiers are set through this website.</p>
+      <p>Apart from the advertising technologies described above, we share information only with
+        service providers who help us operate the website (for example, hosting or analytics), and
+        only as needed to provide those services.</p>
 
       <h2>Your California Privacy Rights (CCPA/CPRA)</h2>
       <p>If you are a California resident, you have the right to:</p>
@@ -78,8 +113,10 @@ $phone = e(cfg('site_phone', SITE_PHONE));
         <li><strong>Right to delete</strong> personal information we have collected, subject to
           legal exceptions.</li>
         <li><strong>Right to correct</strong> inaccurate personal information.</li>
-        <li><strong>Right to opt out</strong> of the sale or sharing of personal information
-          (note: we do not sell your information).</li>
+        <li><strong>Right to opt out</strong> of the sale or sharing of personal information.
+          We do not sell your information. You can opt out of any sharing through advertising
+          cookies by declining our cookie banner, or by clearing this site&rsquo;s cookies and
+          declining when the banner reappears.</li>
         <li><strong>Right to non-discrimination</strong> for exercising your privacy rights.</li>
       </ul>
       <p>To exercise any of these rights, contact us using the details below. We will verify
