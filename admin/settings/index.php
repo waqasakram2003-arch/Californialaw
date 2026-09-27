@@ -16,6 +16,7 @@ $fields = [
     'social_linkedin'   => ['LinkedIn URL', 'text'],
     'social_instagram'  => ['Instagram URL', 'text'],
     'ga_id'             => ['Google Analytics ID (e.g. G-XXXX)', 'text'],
+    'ads_id'            => ['Google Ads tag ID (e.g. AW-XXXXXXXXXX)', 'text'],
     'pixel_id'          => ['Meta Pixel ID', 'text'],
     'footer_disclaimer' => ['Footer disclaimer text', 'textarea'],
 ];

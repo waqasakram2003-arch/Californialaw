@@ -2,9 +2,9 @@
 /**
  * analytics.php — privacy-first analytics + CCPA cookie consent.
  *
- * Tracking scripts (GA4 + Meta Pixel) are injected ONLY when:
+ * Tracking scripts (GA4 + Google Ads + Meta Pixel) are injected ONLY when:
  *   1. the corresponding ID is configured in admin Settings (cfg('ga_id'),
- *      cfg('pixel_id')), AND
+ *      cfg('ads_id'), cfg('pixel_id')), AND
  *   2. the visitor has actively accepted cookies (gsil_consent=accept).
  *
  * If consent is unset, a banner is shown (analytics_banner()). Declining stores
@@ -32,17 +32,23 @@ if (!function_exists('analytics_head')) {
             return; // no trackers until the visitor opts in
         }
         $ga    = cfg('ga_id');
+        $ads   = cfg('ads_id');      // Google Ads conversion tag, e.g. AW-XXXXXXXXXX
         $pixel = cfg('pixel_id');
-        if ($ga):
+        // GA4 and Google Ads share ONE gtag.js loader — loading it twice would
+        // double-register the dataLayer. Load once with whichever ID is present,
+        // then issue a separate gtag('config', ...) per product.
+        if ($ga || $ads):
+            $loaderId = $ga ?: $ads;
         ?>
-  <!-- Google Analytics 4 (loaded after cookie consent) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($ga) ?>"></script>
+  <!-- Google tag (gtag.js) — loaded after cookie consent -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($loaderId) ?>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '<?= e($ga) ?>', { anonymize_ip: true });
-  </script>
+<?php if ($ga): ?>    gtag('config', '<?= e($ga) ?>', { anonymize_ip: true });
+<?php endif; ?><?php if ($ads): ?>    gtag('config', '<?= e($ads) ?>');
+<?php endif; ?>  </script>
         <?php
         endif;
         if ($pixel):
@@ -67,7 +73,7 @@ if (!function_exists('analytics_banner')) {
     function analytics_banner(): void
     {
         // Nothing to consent to if no trackers are configured, or already decided.
-        $hasTrackers = cfg('ga_id') || cfg('pixel_id');
+        $hasTrackers = cfg('ga_id') || cfg('ads_id') || cfg('pixel_id');
         if (!$hasTrackers || analytics_consent() !== '') {
             return;
         }
