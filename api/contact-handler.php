@@ -57,8 +57,12 @@ try {
         : 'Something went wrong. Please call us directly.']);
 }
 
-send_mail(SITE_EMAIL, 'New contact form message',
-    "Name: $name\nEmail: $email\nPhone: $phone\nCase type: $caseType\n\n$message\n", $email);
+// Forward the lead to the firm — unless it reads like a sales/SEO solicitation.
+// (The row is already saved above, so a filtered message is never lost.)
+if (!is_solicitation("$name $caseType $message")) {
+    send_mail(SITE_EMAIL, 'New contact form message',
+        "Name: $name\nEmail: $email\nPhone: $phone\nCase type: $caseType\n\n$message\n", $email);
+}
 
 json_response(200, [
     'ok'      => true,

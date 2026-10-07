@@ -132,7 +132,12 @@ $firmBody = "New case evaluation request\n\n"
     . "\nInsurance claim: " . ($insuranceClaim ? 'Yes' : 'No')
     . "\nPreferred contact: $prefContact ($bestTime)\nHeard about us: $hearAbout\n\n"
     . "Description:\n$description\n";
-send_mail(SITE_EMAIL, 'New Case Evaluation Request', $firmBody, $email);
+// Forward to the firm + confirm to the client — unless it looks like a solicitation.
+// (The evaluation is already saved above, so nothing is lost.)
+$solicitation = is_solicitation("$name $incidentType $injuries $description $hearAbout");
+if (!$solicitation) {
+    send_mail(SITE_EMAIL, 'New Case Evaluation Request', $firmBody, $email);
+}
 
 $clientBody = "Hi $name,\n\nThank you for requesting a free case evaluation from " . SITE_NAME . ". "
     . "We have received your information and a member of our team will contact you shortly"
@@ -140,7 +145,9 @@ $clientBody = "Hi $name,\n\nThank you for requesting a free case evaluation from
     . "This message confirms receipt of your request. It is not legal advice and does not create an "
     . "attorney-client relationship. If your matter is urgent, please call us at " . SITE_PHONE . ".\n\n"
     . "— " . SITE_NAME . "\nPast results do not guarantee future outcomes.\n";
-send_mail($email, 'We received your case evaluation request', $clientBody);
+if (!$solicitation) {
+    send_mail($email, 'We received your case evaluation request', $clientBody);
+}
 
 json_response(200, [
     'ok'      => true,

@@ -54,9 +54,11 @@ try {
         : 'Something went wrong. Please call us directly.']);
 }
 
-// Notify the firm (non-fatal).
-send_mail(SITE_EMAIL, 'New website inquiry (' . $source . ')',
-    "Name: $name\nPhone: $phone\nEmail: $email\nCase type: $caseType\nMessage: $message\n", $email ?: null);
+// Notify the firm (non-fatal) — unless it reads like a sales/SEO solicitation.
+if (!is_solicitation("$name $caseType $message")) {
+    send_mail(SITE_EMAIL, 'New website inquiry (' . $source . ')',
+        "Name: $name\nPhone: $phone\nEmail: $email\nCase type: $caseType\nMessage: $message\n", $email ?: null);
+}
 
 json_response(200, [
     'ok'      => true,

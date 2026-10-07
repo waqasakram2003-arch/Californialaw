@@ -75,6 +75,62 @@ function send_mail(string $to, string $subject, string $body, ?string $replyTo =
     }
 }
 
+/**
+ * Heuristic spam/solicitation filter. Returns true when a submission reads like
+ * a sales pitch (SEO, web-design, link-building, lead-gen, "rank your website",
+ * "grow your business" etc.) rather than a genuine injury inquiry.
+ *
+ * Used to SKIP forwarding the lead to the firm. The row is still saved to the
+ * database, so nothing is ever lost — a rare false positive is recoverable in
+ * the admin panel, which is why the list can be aggressive.
+ */
+function is_solicitation(string $text): bool
+{
+    $h = ' ' . mb_strtolower(preg_replace('/\s+/', ' ', trim($text))) . ' ';
+    if ($h === '  ') {
+        return false;
+    }
+
+    $needles = [
+        // SEO / link spam — essentially never in a real injury inquiry
+        'search engine optimization', ' seo ', 'seo service', 'seo services', 'seo agency',
+        'seo expert', 'seo package', 'seo audit', 'affordable seo', 'off page', 'on page seo',
+        'backlink', 'back link', 'guest post', 'guest blogging', 'link building', 'link-building',
+        'dofollow', 'do-follow', 'do follow link', 'domain authority', 'press release distribution',
+        'first page of google', 'page one of google', 'top of google', 'rank higher', 'google ranking',
+        'rank your website', 'rank your site', 'rank on google', 'ranking on google',
+        // marketing / dev pitches
+        'digital marketing', 'marketing services', 'marketing agency', 'social media marketing',
+        'content marketing', 'email marketing service', 'ppc campaign', 'google ads management',
+        'website redesign', 'redesign your website', 'develop your website', 'build your website',
+        'web development services', 'website development services', 'mobile app development',
+        'wordpress development', 'ui/ux',
+        // lead-gen / growth pitches
+        'lead generation', 'generate leads', 'qualified leads', 'leads for your', 'exclusive leads',
+        'website traffic', 'organic traffic', 'increase your online presence', 'online presence',
+        'grow your business', 'grow your law firm', 'scale your business',
+        // outreach / vendor openers
+        'we offer', 'we provide', 'we specialize in', 'our services include', 'our agency',
+        'our company offers', 'our company provides', 'we can help you rank', 'our team can help you',
+        'white label', 'white-label', 'outsourc', 'offshore team', 'affordable package',
+        'business proposal', 'partnership opportunity', 'collaboration opportunity',
+        'reaching out to offer', 'cold email', 'b2b leads', 'bulk email', 'investment opportunity',
+    ];
+    foreach ($needles as $n) {
+        if (strpos($h, $n) !== false) {
+            return true;
+        }
+    }
+    // 2nd-person benefit pitches ("increase your traffic/sales/leads/ranking…")
+    if (preg_match('/\b(increase|boost|grow|double|drive|improve|maximize)\s+(your\s+)?(traffic|sales|revenue|leads|clients|customers|ranking|rankings|visibility|conversions|reach)\b/', $h)) {
+        return true;
+    }
+    if (preg_match('/\bmore\s+(leads|clients|customers|traffic|cases|sales)\s+for\s+your\b/', $h)) {
+        return true;
+    }
+    return false;
+}
+
 /** Send a JSON response and stop. */
 function json_response(int $code, array $payload): void
 {
